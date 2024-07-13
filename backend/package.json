@@ -11,7 +11,8 @@
     "lint:fix": "eslint --fix --ext .ts src/",
     "format": "npx prettier --write src/",
     "prisma": "sudo docker exec -it sistema_estoque_backend npx prisma",
-    "swagger": "ts-node ./swagger.ts"
+    "swagger": "ts-node ./swagger.ts",
+    "seed": "ts-node prisma/seed.ts"
   },
   "repository": {
     "type": "git",
