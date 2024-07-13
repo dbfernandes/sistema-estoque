@@ -10,7 +10,7 @@
     "lint": "eslint --ext .ts src/",
     "lint:fix": "eslint --fix --ext .ts src/",
     "format": "npx prettier --write src/",
-    "prisma": "sudo docker exec -it loja_backend npx prisma",
+    "prisma": "sudo docker exec -it sistema_estoque_backend npx prisma",
     "swagger": "ts-node ./swagger.ts"
   },
   "repository": {
@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/s4imu/PW2-2023-2#readme",
   "dependencies": {
-    "@prisma/client": "^5.9.0",
+    "@prisma/client": "^5.16.2",
     "@types/morgan": "^1.9.9",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
@@ -56,7 +56,7 @@
     "http-status-codes": "^2.3.0",
     "nodemon": "^3.0.2",
     "prettier": "^3.2.2",
-    "prisma": "^5.9.0",
+    "prisma": "^5.16.2",
     "swagger-autogen": "^2.23.7",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
