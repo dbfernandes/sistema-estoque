@@ -8,5 +8,4 @@ export type updateUsuarioDto = Pick<
   Usuario,
   'nome' | 'email' | 'senha' | 'tipoUsuarioId'
 >;
-
 export default createUsuarioDto;
