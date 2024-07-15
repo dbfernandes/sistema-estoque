@@ -6,7 +6,7 @@ import validate from '../../middlewares/validate';
 
 router.get('/', usuarioController.index);
 router.post('/', validate(schemaUsuario), usuarioController.create);
-router.get('/:id', usuarioController.read);
+router.get('/:id', usuarioController.getUserById);
 router.put('/:id', validate(schemaUsuario), usuarioController.update);
 router.delete('/:id', usuarioController.remove);
 
