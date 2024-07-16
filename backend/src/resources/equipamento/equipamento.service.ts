@@ -1,21 +1,25 @@
 import { PrismaClient, Equipamento } from '@prisma/client';
-import { createEquipamentoDto, updateEquipamentoDto } from './equipment.types';
+import {
+  createEquipamentoDto,
+  updateEquipamentoDto,
+} from './equipamento.types';
 
 const prisma = new PrismaClient();
 
 export const createEquipamento = async (
-  Equipamento: createEquipamentoDto,
+  equipamento: createEquipamentoDto,
 ): Promise<Equipamento> => {
-  return await prisma.equipamento.create({ data: Equipamento });
+  return await prisma.equipamento.create({ data: equipamento });
 };
 
 export const listEquipamentos = async (): Promise<Equipamento[]> => {
   return await prisma.equipamento.findMany();
 };
+
 export const EquipamentoAlreadyExists = async (
-  nome: string,
+  numSerie: string,
 ): Promise<boolean> => {
-  return !!(await prisma.equipamento.findUnique({ where: { nome } }));
+  return !!(await prisma.equipamento.findFirst({ where: { numSerie } }));
 };
 
 export const readEquipamento = async (
@@ -26,9 +30,9 @@ export const readEquipamento = async (
 
 export const updateEquipamento = async (
   id: string,
-  Equipamento: updateEquipamentoDto,
+  equipamento: updateEquipamentoDto,
 ): Promise<Equipamento> => {
-  return await prisma.equipamento.update({ where: { id }, data: Equipamento });
+  return await prisma.equipamento.update({ where: { id }, data: equipamento });
 };
 
 export const removeEquipamento = async (id: string): Promise<Equipamento> => {

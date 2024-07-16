@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import equipamentoController from './equipment.controller';
+import equipamentoController from './equipamento.controller';
 const router = Router();
-import schemaEquipamento from './equipment.schema';
+import schemaEquipamento from './equipamento.schema';
 import validate from '../../middlewares/validate';
 import isAdmin from '../../middlewares/isAdmin';
 
@@ -13,7 +13,12 @@ router.post(
   equipamentoController.create,
 );
 router.get('/:id', equipamentoController.read);
-router.put('/:id', isAdmin, equipamentoController.update);
+router.put(
+  '/:id',
+  isAdmin,
+  validate(schemaEquipamento),
+  equipamentoController.update,
+);
 router.delete('/:id', isAdmin, equipamentoController.remove);
 
 export default router;
