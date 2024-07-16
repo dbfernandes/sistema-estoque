@@ -28,8 +28,8 @@ model TipoUsuario {
 model Equipamento {
   id              String            @id @default(uuid()) @db.Char(40)
   nome            String            @db.VarChar(100)
-  descricao       Json
-  observacoes     Json
+  descricao       String            @db.VarChar(5000)
+  observacoes     String            @db.VarChar(5000)
   origem          String
   numSerie        String
   statusEquip     StatusEquipamento @default(Laboratorio) @map("status_equipamento")
@@ -48,7 +48,7 @@ model Solicitacao {
   dataDevolucao    DateTime?          @map("data_devolucao")
   equipamentos     SolicitacaoEquipamento[]
   statusSolic      StatusSolicitacao  @map("status_solicitacao")
-  observacoes      Json
+  observacoes      String             @db.VarChar(5000)
   createdAt        DateTime           @default(now()) @map("created_at")
   updatedAt        DateTime           @updatedAt @map("updated_at")
 
