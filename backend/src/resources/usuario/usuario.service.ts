@@ -1,5 +1,5 @@
 import { PrismaClient, Usuario } from '@prisma/client';
-import createUsuarioDto from './usuario.dto';
+import createUsuarioDto, { updateUsuarioDto } from './usuario.dto';
 import { genSalt, hash } from 'bcryptjs';
 import { error } from 'console';
 import { UUID } from 'crypto';
@@ -30,4 +30,33 @@ export const getUser = async (
     }
   })
   return usuarioDb
+}
+
+export const listAllUsers = async (
+): Promise<Usuario[]|null> => {
+
+  const usersDb = await prisma.usuario.findMany()
+  return usersDb
+}
+
+export const updateUser = async ( 
+  id: string,
+  usuario: updateUsuarioDto
+): Promise<Usuario> => {
+  const userDb = await prisma.usuario.update({
+    where:{
+      id: id
+    }, data: usuario
+  })
+  return userDb
+}
+
+export const removeUser = async(
+  id: string
+): Promise<Usuario> => {
+  return await prisma.usuario.delete({
+    where:{
+      id: id
+    }
+  })
 }
