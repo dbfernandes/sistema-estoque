@@ -58,10 +58,22 @@ model Solicitacao {
 model SolicitacaoEquipamento {
   solicitacaoId String
   equipamentoId String
+  projetoId     String
+  projeto       Projeto     @relation(fields: [projetoId], references: [id])
   solicitacao   Solicitacao @relation(fields: [solicitacaoId], references: [id])
   equipamento   Equipamento @relation(fields: [equipamentoId], references: [id])
 
   @@id([solicitacaoId, equipamentoId])
+}
+
+model Projeto{
+  id                            String        @id @default(uuid())
+  nome                          String
+  solicitacoes                  SolicitacaoEquipamento[]
+  descricao                     String        @db.VarChar(200)
+  responsavel                   String
+  createdAt                     DateTime      @default(now()) @map("created_at")
+  updatedAt                     DateTime      @updatedAt @map("updated_at")
 }
 
 enum StatusEquipamento {
