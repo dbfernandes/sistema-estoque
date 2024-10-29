@@ -9,7 +9,7 @@ import cors from 'cors';
 
 import swaggerFile from './swagger-output.json';
 import validateEnv from './utils/validateEnv';
-import setLangCookie from './middlewares/setLangCookie';
+//import setLangCookie from './middlewares/setLangCookie';
 import accessLoggerMiddleware from './middlewares/accessLoggerMiddleware';
 import router from './router';
 
@@ -30,7 +30,7 @@ app.use(cors({ credentials: true, origin: 'http://localhost:4466' }));
 app.use(morgan('combined'));
 app.use(express.json());
 app.use(cookieParser());
-app.use(setLangCookie);
+//app.use(setLangCookie);
 app.use(
   session({
     genid: (req) => uuidv4(),
