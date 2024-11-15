@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
-import ButtonAppBar from "@/components/AppBar/AppBar";
-
-import "@/styles/globals.css";
-import "@/styles/app.css";
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import NavBar from "@/components/NavBar/NavBar";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -21,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ButtonAppBar />
+        <NavBar />
         {children}
       </body>
     </html>
