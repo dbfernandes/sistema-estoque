@@ -1,3 +1,5 @@
+"use client"
+
 import { Box, TextField, Button } from "@mui/material";
 import { useState, FormEvent } from "react";
 
@@ -9,7 +11,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
 
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import {
   IconButton,
   Typography,

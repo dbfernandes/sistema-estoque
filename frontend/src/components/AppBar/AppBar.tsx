@@ -1,3 +1,4 @@
+"use client"
 import { useContext } from "react";
 
 import AppBar from "@mui/material/AppBar";
@@ -10,9 +11,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 import Link from "next/link";
 import { AuthContext } from "@/provider/AuthProvider";
-import api from "@/utils/api";
+import api from "@/services/api";
 
-import { useRouter } from "../../../node_modules/next/router";
+import { useRouter } from "next/navigation";
 
 export default function ButtonAppBar() {
   const router = useRouter();

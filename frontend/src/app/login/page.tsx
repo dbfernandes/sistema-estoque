@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, FormEvent, useContext } from "react";
 import {
   Box,
@@ -10,7 +12,7 @@ import api from "@/services/api";
 
 import { AuthContext } from "@/provider/AuthProvider";
 
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 function Login() {
   const router = useRouter();

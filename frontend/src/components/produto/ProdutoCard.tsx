@@ -15,7 +15,7 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import Typography from "@mui/material/Typography";
 
 import { Produto } from "@/types/produto";
-import api from "@/utils/api";
+import api from "@/services/api";
 import { IconButton } from "@mui/material";
 
 interface ProdutoCardProps {
