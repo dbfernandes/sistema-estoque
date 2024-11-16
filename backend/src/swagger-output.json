@@ -1,25 +1,17 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "API da Loja virtual",
+    "title": "API do Lab Maker",
     "description": "Documentação da API",
     "version": "1.0.0"
   },
-  "host": "http://localhost:3333",
+  "host": "http://localhost:8000",
   "basePath": "/",
   "schemes": [
     "http"
   ],
   "paths": {
-    "/v1/produto/": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      },
+    "/signup": {
       "post": {
         "description": "",
         "responses": {
@@ -29,67 +21,7 @@
         }
       }
     },
-    "/v1/produto/{id}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      },
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/v1/signup": {
-      "post": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/v1/login": {
+    "/login": {
       "post": {
         "description": "",
         "parameters": [
@@ -116,7 +48,7 @@
         }
       }
     },
-    "/v1/logout": {
+    "/logout": {
       "post": {
         "description": "",
         "responses": {
@@ -126,21 +58,65 @@
         }
       }
     },
-    "/v1/language/": {
+    "/usuario/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
       "post": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/usuario/{id}": {
+      "get": {
         "description": "",
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "lang": {
-                  "example": "any"
-                }
-              }
-            }
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
@@ -150,7 +126,7 @@
         }
       }
     },
-    "/v1/usuario/": {
+    "/equipamento/": {
       "get": {
         "description": "",
         "responses": {
@@ -168,7 +144,7 @@
         }
       }
     },
-    "/v1/usuario/{id}": {
+    "/equipamento/{id}": {
       "get": {
         "description": "",
         "parameters": [
@@ -218,32 +194,30 @@
         }
       }
     },
-    "/v1/": {
+    "/projeto/": {
       "get": {
         "description": "",
         "responses": {
-          "200": {
-            "description": "OK"
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
           }
         }
       }
     },
-    "/v1/sobre": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/v1/bemvindo/{nome}": {
+    "/projeto/{id}": {
       "get": {
         "description": "",
         "parameters": [
           {
-            "name": "nome",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -254,40 +228,20 @@
             "description": ""
           }
         }
-      }
-    },
-    "/v1/{(api|resResponset)\\}/.$/": {
-      "get": {
+      },
+      "delete": {
         "description": "",
         "parameters": [
           {
-            "name": "(api|resResponset)\\",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/v1/lorem/{qtd}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "qtd",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
+          "default": {
+            "description": ""
           }
         }
       }
