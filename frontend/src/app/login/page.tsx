@@ -1,71 +1,60 @@
-"use client"
+"use client";
+import { SubmitHandler, useForm } from "react-hook-form";
 
-import { useState, FormEvent, useContext } from "react";
-import {
-  Box,
-  TextField,
-  Button,
-  Typography,
-} from "../../../node_modules/@mui/material/index";
+type Inputs = {
+  email: string;
+  senha: string;
+};
 
-import api from "@/services/api";
+const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
 
-import { AuthContext } from "@/provider/AuthProvider";
-
-import { useRouter } from "next/navigation";
-
-function Login() {
-  const router = useRouter();
-  const { auth, setAuth } = useContext(AuthContext);
-  const [email, setEmail] = useState<string>("");
-  const [senha, setSenha] = useState<string>("");
-  const [error, setError] = useState<string>("");
-
-  const onSubmit = () => {
-    const credentials = { email, senha };
-    api
-      .post("/login", credentials, { withCredentials: true })
-      .then((data) => {
-        setError("");
-        setAuth({ nome: data.data.nome, tipoUsuario: data.data.tipoUsuario });
-        router.push("/produto");
-      })
-      .catch((err) => {
-        if (err.response.status === 401)
-          setError("Informações de Login Incorretas");
-        console.log(err);
-      });
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    console.log(data);
   };
 
   return (
-    <div>
-      <h1>Login de Usuário</h1>
-      <form onSubmit={onSubmit}>
-        <Box sx={{ mb: 2 }}>
-          <TextField
-            label="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          ></TextField>
-        </Box>
-        <Box sx={{ mb: 2 }}>
-          <TextField
-            label="Senha"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-          ></TextField>
-        </Box>
-        <Button variant="contained" type="submit">
-          Entrar
-        </Button>
-        <Box>
-          <Typography variant="body2" sx={{ color: "red" }}>
-            {error}
-          </Typography>
-        </Box>
-      </form>
-    </div>
+    <main>
+      <div className="container col-3 mt-5">
+        <h1>Login de Usuário</h1>
+
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">
+              Email
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              aria-describedby="emailHelp"
+              {...register("email")}
+            />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="senha" className="form-label">
+              Senha
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              id="senha"
+              {...register("senha")}
+            />
+          </div>
+
+          <button type="submit" className="btn btn-primary w-100">
+            Entrar
+          </button>
+        </form>
+      </div>
+    </main>
   );
-}
+};
 
 export default Login;

@@ -3,8 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "@/components/NavBar/NavBar";
 
 export const metadata: Metadata = {
-  title: "Home",
-  description: "Welcome to Next.js",
+  title: "Sistema-estoque",
+  description: "Sistema de estoque Lab Maker",
 };
 
 export default function RootLayout({
