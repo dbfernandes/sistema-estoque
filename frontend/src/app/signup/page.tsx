@@ -1,131 +1,116 @@
-"use client"
+"use client";
 
-import { Box, TextField, Button } from "@mui/material";
-import { useState, FormEvent } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 
-import { SignUpDto } from "@/types/auth";
+type Inputs = {
+  nome: string;
+  email: string;
+  emailConfirmar: string;
+  senha: string;
+};
 
-import api from "@/services/api";
+export default function SignUp() {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>();
 
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import InputAdornment from "@mui/material/InputAdornment";
-
-import { useRouter } from "next/navigation";
-import {
-  IconButton,
-  Typography,
-} from "../../../node_modules/@mui/material/index";
-
-function SignUp() {
-  const router = useRouter();
-  const [nome, setNome] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [senha, setSenha] = useState<string>("");
-  const [confirmSenha, setConfirmSenha] = useState<string>("");
-  const [error, setError] = useState<string>("");
-  const [viewSenha, setViewSenha] = useState<boolean>(false);
-  const [viewConfirmSenha, setViewConfirmSenha] = useState<boolean>(false);
-
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    if (senha != confirmSenha) {
-      setError("as senhas não batem");
-    } else {
-      const credenciais: SignUpDto = {
-        nome: nome!,
-        email: email!,
-        senha: senha!,
-      };
-      api.post("/signup", credenciais).then((data) => {
-        router.push("/produto");
-      });
-    }
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    // ignorando o emailConfirmar
+    const { emailConfirmar, ...creds } = data;
+    console.log(creds);
   };
 
+  const email = watch("email");
+
   return (
-    <>
-      <h1>Criação de Conta</h1>
-      <form onSubmit={onSubmit}>
-        <Box sx={{ mb: 2 }}>
-          <TextField
-            sx={{ width: 300 }}
-            label="Nome"
-            required
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
-          ></TextField>
-        </Box>
-        <Box sx={{ mb: 2 }}>
-          <TextField
-            sx={{ width: 300 }}
-            label="Email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          ></TextField>
-        </Box>
-        <Box sx={{ mb: 2 }}>
-          <TextField
-            sx={{ width: 300 }}
-            label="Senha"
-            type={viewSenha ? "text" : "password"}
-            required
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    onClick={() => {
-                      setViewSenha(!viewSenha);
-                    }}
-                  >
-                    {viewSenha ? <VisibilityIcon /> : <VisibilityOffIcon />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          ></TextField>
-        </Box>
-        <Box sx={{ mb: 2 }}>
-          <TextField
-            sx={{ width: 300 }}
-            label="Confirme Senha"
-            required
-            type={viewConfirmSenha ? "text" : "password"}
-            value={confirmSenha}
-            onChange={(e) => setConfirmSenha(e.target.value)}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    onClick={() => {
-                      setViewConfirmSenha(!viewConfirmSenha);
-                    }}
-                  >
-                    {viewConfirmSenha ? (
-                      <VisibilityIcon />
-                    ) : (
-                      <VisibilityOffIcon />
-                    )}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          ></TextField>
-        </Box>
-        <Box>
-          <Typography variant="body1" sx={{ color: "red" }}>
-            {error}
-          </Typography>
-        </Box>
-        <Button variant="contained" type="submit">
-          Criar Conta
-        </Button>
-      </form>
-    </>
+    <main>
+      <div className="container col-3 mt-5">
+        <h1>Criação de Conta</h1>
+
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="mb-3">
+            <label htmlFor="nome" className="form-label">
+              Nome
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="nome"
+              aria-describedby="nome"
+              {...register("nome", { required: true })}
+            />
+            {errors.nome && (
+              <span className="text-danger">Esse campo é obrigatório</span>
+            )}
+          </div>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">
+              Email
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              aria-describedby="email"
+              {...register("email", { required: true })}
+            />
+            {errors.email && (
+              <span className="text-danger">Esse campo é obrigatório</span>
+            )}
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="confirmarEmail" className="form-label">
+              Confirmar email
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              id="confirmarEmail"
+              aria-describedby="confirmarEmail"
+              {...register("emailConfirmar", {
+                required: true,
+                validate: (value) => value === email || "Emails não coincidem",
+              })}
+            />
+            {errors.emailConfirmar?.type === "required" && (
+              <span className="text-danger">Esse campo é obrigatório</span>
+            )}
+            {errors.emailConfirmar?.type === "validate" && (
+              <span className="text-danger">
+                {errors.emailConfirmar.message}
+              </span>
+            )}
+          </div>
+          <div className="mb-3">
+            <label htmlFor="senha" className="form-label">
+              Senha
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              id="senha"
+              {...register("senha", { required: true, minLength: 6 })}
+            />
+
+            {errors.senha?.type === "required" && (
+              <span className="text-danger">Esse campo é obrigatório</span>
+            )}
+
+            {errors.senha?.type === "minLength" && (
+              <span className="text-danger">Minímo de 6 (seis) caracteres</span>
+            )}
+          </div>
+          <div className="d-grid col-12">
+            <button type="submit" className="btn btn-primary">
+              Confirmar cadastro
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
   );
 }
-
-export default SignUp;
