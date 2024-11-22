@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 
 import api from "@/services/api";
-import { Produto } from "@/types/produto";
+import { Produto } from "@/types/equipamento";
 import styles from "./produto.module.css";
 
 function ProdutoIndex() {

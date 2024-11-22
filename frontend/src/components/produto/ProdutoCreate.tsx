@@ -9,7 +9,7 @@ import api from "@/services/api";
 import { useRouter } from "next/router";
 
 import ProdutoForm from "./ProdutoForm";
-import { CreateProdutoDto } from "@/types/produto";
+import { CreateProdutoDto } from "@/types/equipamento";
 
 function ProdutoCreate() {
   const router = useRouter();

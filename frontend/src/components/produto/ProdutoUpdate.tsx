@@ -9,7 +9,7 @@ import api from "@/services/api";
 import { useRouter } from "next/router";
 
 import ProdutoForm from "./ProdutoForm";
-import { Produto, UpdateProdutoDto } from "@/types/produto";
+import { Produto, UpdateProdutoDto } from "@/types/equipamento";
 
 interface Props {
   id: string;

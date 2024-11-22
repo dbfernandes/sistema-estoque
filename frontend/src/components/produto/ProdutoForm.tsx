@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-import { CreateProdutoDto, Produto } from "@/types/produto";
+import { CreateProdutoDto, Produto } from "@/types/equipamento";
 
 interface Props {
   handleSubmit: (produto: CreateProdutoDto) => void;

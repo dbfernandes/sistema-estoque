@@ -14,7 +14,7 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Typography from "@mui/material/Typography";
 
-import { Produto } from "@/types/produto";
+import { Produto } from "@/types/equipamento";
 import api from "@/services/api";
 import { IconButton } from "@mui/material";
 

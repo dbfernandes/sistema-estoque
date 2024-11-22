@@ -1,11 +1,12 @@
-import { Produto } from "@/types/produto";
+import { Equipamento } from "@/types/equipamento";
 import Image from "next/image";
+import Link from "next/link";
 
 interface CardEquipamentoProps {
-  produto: Produto;
+  equipamento: Equipamento;
 }
 
-const CardEquipamento = ({ produto }: CardEquipamentoProps) => {
+const CardEquipamento = ({ equipamento }: CardEquipamentoProps) => {
   return (
     <div className="col-3">
       <div className="card">
@@ -17,14 +18,18 @@ const CardEquipamento = ({ produto }: CardEquipamentoProps) => {
           height={180}
         /> */}
         <div className="card-body">
-          <h5 className="card-title">{produto.nome}</h5>
+          <h5 className="card-title">{equipamento.nome}</h5>
           <p className="card-text">
             Some quick example text to build on the card title and make up the
             bulk of the cards content.
           </p>
-          <a href="#" className="btn btn-primary">
+          <a href="#"></a>
+          <Link
+            href={`equipamentos/${equipamento.id}`}
+            className="btn btn-primary"
+          >
             Go somewhere
-          </a>
+          </Link>
         </div>
       </div>
     </div>
