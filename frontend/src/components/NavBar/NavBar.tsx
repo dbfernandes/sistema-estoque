@@ -1,4 +1,4 @@
-const NavBar = () => {
+const Navbar = () => {
   return (
     <nav className="navbar bg-primary navbar-expand-lg ">
       <div className="container-fluid">
@@ -34,6 +34,12 @@ const NavBar = () => {
                 Cadastro
               </a>
             </li>
+
+            <li className="nav-item">
+              <a className="nav-link active" href="/equipamento">
+                Equipamentos
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -41,4 +47,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default Navbar;
