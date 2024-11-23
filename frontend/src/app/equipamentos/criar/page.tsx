@@ -18,7 +18,7 @@ export default function EquipamentoCreate() {
   return (
     <main>
       <div className="container col-5 mt-3">
-        <h1>Adiconar um novo equipamento</h1>
+        <h1>Adicionar um novo equipamento</h1>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-3">
@@ -86,12 +86,13 @@ export default function EquipamentoCreate() {
             <label htmlFor="numSerie" className="form-label">
               Número de série
             </label>
-            <textarea
+            <input
+              type="text"
               className="form-control"
               id="numSerie"
-              rows={2}
+              aria-describedby="numSerie"
               {...register("numSerie", { required: true })}
-            ></textarea>
+            />
             {errors.numSerie && (
               <span className="text-danger">Esse campo é obrigatório</span>
             )}

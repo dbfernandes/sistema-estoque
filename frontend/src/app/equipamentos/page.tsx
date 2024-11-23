@@ -2,14 +2,16 @@ import CardEquipamento from "@/components/CardEquipamento/CardEquipamento";
 import { equipamentos } from "@/mocks/equipamentos";
 import { Equipamento } from "@/types/equipamento";
 
-const Equipamentos = () => {
+const EquipamentosCriar = () => {
   return (
     <>
-      {equipamentos.map((equipamento: Equipamento) => (
-        <CardEquipamento equipamento={equipamento} key={equipamento.id} />
-      ))}
+      <div className="container">
+        {equipamentos.map((equipamento: Equipamento) => (
+          <CardEquipamento equipamento={equipamento} key={equipamento.id} />
+        ))}
+      </div>
     </>
   );
 };
 
-export default Equipamentos;
+export default EquipamentosCriar;
