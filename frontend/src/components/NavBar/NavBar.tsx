@@ -1,4 +1,18 @@
+"use client";
+
+import { AuthContext } from "@/provider/AuthProvider";
+import api from "@/services/api";
+import router from "next/router";
+import { useContext } from "react";
+
 const NavBar = () => {
+  const { auth, setAuth } = useContext(AuthContext);
+  const onLogout = () => {
+    api.post("/logout", undefined, { withCredentials: true }).then((data) => {
+      setAuth(null);
+      router.push("/");
+    });
+  };
   return (
     <nav className="navbar bg-primary navbar-expand-lg ">
       <div className="container-fluid">
@@ -23,18 +37,33 @@ const NavBar = () => {
                 Home
               </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link active" href="/login">
-                Login
-              </a>
-            </li>
-
-            <li className="nav-item">
-              <a className="nav-link active" href="/signup">
-                Cadastro
-              </a>
-            </li>
+            {!auth && (
+              <>
+                <li className="nav-item">
+                  <a className="nav-link active" href="/login">
+                    Login
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link active" href="/signup">
+                    Cadastro
+                  </a>
+                </li>
+              </>
+            )}
           </ul>
+          <p className="nav-item mb-2 me-2 mb-md-0">{auth ? auth.nome : ""}</p>
+          {auth && (
+            <>
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={onLogout}
+              >
+                Logout
+              </button>
+            </>
+          )}
         </div>
       </div>
     </nav>

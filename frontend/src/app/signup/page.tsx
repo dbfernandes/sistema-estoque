@@ -1,12 +1,14 @@
 "use client";
 
+import api from "@/services/api";
+import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 type Inputs = {
   nome: string;
   email: string;
-  emailConfirmar: string;
   senha: string;
+  senhaConfirmar: string;
 };
 
 export default function SignUp() {
@@ -17,13 +19,19 @@ export default function SignUp() {
     formState: { errors },
   } = useForm<Inputs>();
 
+  const router = useRouter();
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    // ignorando o emailConfirmar
-    const { emailConfirmar, ...creds } = data;
-    console.log(creds);
+    // ignorando o senhaConfirmar
+    const { senhaConfirmar, ...creds } = data;
+
+    api.post("/signup", creds, { withCredentials: true }).then((data) => {
+      console.log(creds);
+      router.push("/login");
+    });
   };
 
-  const email = watch("email");
+  const senha = watch("senha");
 
   return (
     <main>
@@ -63,29 +71,6 @@ export default function SignUp() {
           </div>
 
           <div className="mb-3">
-            <label htmlFor="confirmarEmail" className="form-label">
-              Confirmar email
-            </label>
-            <input
-              type="email"
-              className="form-control"
-              id="confirmarEmail"
-              aria-describedby="confirmarEmail"
-              {...register("emailConfirmar", {
-                required: true,
-                validate: (value) => value === email || "Emails não coincidem",
-              })}
-            />
-            {errors.emailConfirmar?.type === "required" && (
-              <span className="text-danger">Esse campo é obrigatório</span>
-            )}
-            {errors.emailConfirmar?.type === "validate" && (
-              <span className="text-danger">
-                {errors.emailConfirmar.message}
-              </span>
-            )}
-          </div>
-          <div className="mb-3">
             <label htmlFor="senha" className="form-label">
               Senha
             </label>
@@ -104,6 +89,31 @@ export default function SignUp() {
               <span className="text-danger">Minímo de 6 (seis) caracteres</span>
             )}
           </div>
+
+          <div className="mb-3">
+            <label htmlFor="confirmarSenha" className="form-label">
+              Confirmar Senha
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              id="confirmarSenha"
+              aria-describedby="confirmarSenha"
+              {...register("senhaConfirmar", {
+                required: true,
+                validate: (value) => value === senha || "Senhas não coincidem",
+              })}
+            />
+            {errors.senhaConfirmar?.type === "required" && (
+              <span className="text-danger">Esse campo é obrigatório</span>
+            )}
+            {errors.senhaConfirmar?.type === "validate" && (
+              <span className="text-danger">
+                {errors.senhaConfirmar.message}
+              </span>
+            )}
+          </div>
+
           <div className="d-grid col-12">
             <button type="submit" className="btn btn-primary">
               Confirmar cadastro
