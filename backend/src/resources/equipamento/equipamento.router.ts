@@ -5,20 +5,20 @@ import schemaEquipamento from './equipamento.schema';
 import validate from '../../middlewares/validate';
 import isAdmin from '../../middlewares/isAdmin';
 
-router.get('/', equipamentoController.index);
+router.get('/equipamento/', equipamentoController.index);
 router.post(
-  '/',
+  '/equipamento/',
   isAdmin,
   validate(schemaEquipamento),
   equipamentoController.create,
 );
-router.get('/:id', equipamentoController.read);
+router.get('/equipamento/:id', equipamentoController.read);
 router.put(
-  '/:id',
+  '/equipamento/:id',
   isAdmin,
   validate(schemaEquipamento),
   equipamentoController.update,
 );
-router.delete('/:id', isAdmin, equipamentoController.remove);
+router.delete('/equipamento/:id', isAdmin, equipamentoController.remove);
 
 export default router;

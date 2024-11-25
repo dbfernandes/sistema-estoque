@@ -6,27 +6,45 @@ import projetoRouter from '../resources/projeto/projetos.router';
 
 const router = Router();
 
+/**
+ * @swagger
+ * tags:
+ *   - name: Auth
+ *     description: Rotas de autenticação
+ */
 router.use(
   '/',
-  // #swagger.tags = ['Auth']
   authRouter,
 );
 
+/**
+ * @swagger
+ * tags:
+ *   - name: Usuario
+ *     description: Rotas de usuário
+ */
 router.use(
-  '/usuario',
-  // #swagger.tags = ['Usuario']s
   usuarioRouter,
 );
 
+/**
+ * @swagger
+ * tags:
+ *   - name: Equipamento
+ *     description: Rotas de equipamento
+ */
 router.use(
-  '/equipamento',
-  // #swagger.tags = ['Equipamento']s
   equipamentoRouter,
 );
 
+/**
+ * @swagger
+ * tags:
+ *   - name: Projeto
+ *     description: Rotas de projeto
+ */
 router.use(
-  '/projeto',
   projetoRouter,
-)
+);
 
 export default router;
