@@ -1,3 +1,5 @@
+"use client";
+
 import { Auth } from "@/types/auth";
 import { ReactNode, useState, createContext } from "react";
 

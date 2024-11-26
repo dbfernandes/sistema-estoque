@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "bootstrap/dist/css/bootstrap.min.css";
-import NavBar from "@/components/Navbar/Navbar";
+import Navbar from "@/components/Navbar/Navbar";
+import BootstrapClient from "@/components/BootstrapClient";
+import AuthProvider from "@/provider/AuthProvider";
 
 export const metadata: Metadata = {
   title: "Sistema-estoque",
@@ -15,8 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <NavBar />
-        {children}
+        <AuthProvider>
+          <Navbar />
+          {children}
+          <BootstrapClient />
+        </AuthProvider>
       </body>
     </html>
   );

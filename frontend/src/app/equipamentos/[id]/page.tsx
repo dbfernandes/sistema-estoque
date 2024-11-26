@@ -10,10 +10,10 @@ const EquipamentoVer = () => {
   );
 
   return (
-    <div className="container">
-      <h1>Sobre o equipamento:</h1>
+    <div className="container mt-3">
+      <h3>Detalhes do equipamento:</h3>
 
-      <div className="card">
+      <div className="card mt-3">
         <h5 className="card-header">{equipamento?.nome}</h5>
 
         <div className="card-body">
@@ -34,7 +34,7 @@ const EquipamentoVer = () => {
         </ul>
       </div>
 
-      <Link href={`/equipamentos/criar`} className="btn btn-primary mt-2">
+      <Link href={`/equipamentos/criar`} className="btn btn-primary mt-3">
         Adicionar novo equipamento
       </Link>
     </div>
