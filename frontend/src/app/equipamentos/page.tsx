@@ -5,10 +5,12 @@ import { Equipamento } from "@/types/equipamento";
 const EquipamentosCriar = () => {
   return (
     <>
-      <div className="container">
-        {equipamentos.map((equipamento: Equipamento) => (
-          <CardEquipamento equipamento={equipamento} key={equipamento.id} />
-        ))}
+      <div className="container mt-2">
+        <div className="row">
+          {equipamentos.map((equipamento: Equipamento) => (
+            <CardEquipamento equipamento={equipamento} key={equipamento.id} />
+          ))}
+        </div>
       </div>
     </>
   );

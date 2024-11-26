@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "bootstrap/dist/css/bootstrap.min.css";
-import NavBar from "@/components/NavBar/Navbar";
+import NavBar from "@/components/Navbar/Navbar";
 
 export const metadata: Metadata = {
   title: "Sistema-estoque",

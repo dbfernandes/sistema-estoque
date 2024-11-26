@@ -3,7 +3,7 @@ const Navbar = () => {
     <nav className="navbar bg-primary navbar-expand-lg ">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
-          Navbar
+          Sistema
         </a>
         <button
           className="navbar-toggler"

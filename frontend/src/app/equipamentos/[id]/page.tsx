@@ -1,6 +1,7 @@
 "use client";
 import { equipamentos } from "@/mocks/equipamentos";
 import { useParams } from "next/navigation";
+import Link from "next/link";
 
 const EquipamentoVer = () => {
   const params = useParams<{ id: string }>();
@@ -32,6 +33,10 @@ const EquipamentoVer = () => {
           </li>
         </ul>
       </div>
+
+      <Link href={`/equipamentos/criar`} className="btn btn-primary mt-2">
+        Adicionar novo equipamento
+      </Link>
     </div>
   );
 };

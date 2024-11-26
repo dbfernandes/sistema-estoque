@@ -7,7 +7,7 @@ interface CardEquipamentoProps {
 
 const CardEquipamento = ({ equipamento }: CardEquipamentoProps) => {
   return (
-    <div className="col-2">
+    <div className="col-6">
       <div className="card">
         <div className="card-body">
           <h5 className="card-title">{equipamento.nome}</h5>
