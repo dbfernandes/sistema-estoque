@@ -1,16 +1,13 @@
+"use client";
+
 import { useState, FormEvent, useContext } from "react";
-import {
-  Box,
-  TextField,
-  Button,
-  Typography,
-} from "../../../node_modules/@mui/material/index";
+import { Box, TextField, Button, Typography } from "@mui/material";
 
 import api from "@/services/api";
 
 import { AuthContext } from "@/provider/AuthProvider";
 
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 function Login() {
   const router = useRouter();

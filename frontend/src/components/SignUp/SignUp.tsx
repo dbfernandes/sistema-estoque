@@ -3,7 +3,7 @@ import { useState, FormEvent } from "react";
 
 import { SignUpDto } from "@/types/auth";
 
-import api from "@/utils/api";
+import api from "@/services/api";
 
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";

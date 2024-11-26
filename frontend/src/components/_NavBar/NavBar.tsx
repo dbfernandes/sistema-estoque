@@ -1,3 +1,4 @@
+"use client"
 import { useContext } from "react";
 
 import AppBar from "@mui/material/AppBar";
@@ -10,11 +11,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 import Link from "next/link";
 import { AuthContext } from "@/provider/AuthProvider";
-import api from "@/utils/api";
+import api from "@/services/api";
 
-import { useRouter } from "../../../node_modules/next/router";
+import { useRouter } from "next/navigation";
 
-export default function ButtonAppBar() {
+export default function NavBar() {
   const router = useRouter();
   const { auth, setAuth } = useContext(AuthContext);
   const onLogout = () => {
@@ -44,10 +45,10 @@ export default function ButtonAppBar() {
           </Button>
           {!auth && (
             <>
-              <Button component={Link} href="/auth/signup" color="inherit">
+              <Button component={Link} href="/signup" color="inherit">
                 Sign Up
               </Button>
-              <Button component={Link} href="/auth/login" color="inherit">
+              <Button component={Link} href="/login" color="inherit">
                 Login
               </Button>
             </>

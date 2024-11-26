@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-import api from "@/utils/api";
+import api from "@/services/api";
 
 import { useRouter } from "next/router";
 
