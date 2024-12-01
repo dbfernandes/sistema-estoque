@@ -37,6 +37,13 @@ const EquipamentoVer = () => {
       <Link href={`/equipamentos/criar`} className="btn btn-primary mt-3">
         Adicionar novo equipamento
       </Link>
+
+      <Link
+        href={`/equipamentos/atualizar/${params?.id}`}
+        className="btn btn-primary mt-3 ms-2"
+      >
+        Atualizar equipamento
+      </Link>
     </div>
   );
 };
