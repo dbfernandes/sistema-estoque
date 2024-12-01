@@ -1,5 +1,5 @@
 export interface Equipamento {
-  id: number;
+  id: string;
   nome: string;
   descricao: string;
   observacoes: string;

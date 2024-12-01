@@ -17,8 +17,8 @@ export default function EquipamentoCreate() {
 
   return (
     <main>
-      <div className="container col-5 mt-3">
-        <h1>Adicionar um novo equipamento</h1>
+      <div className="container mt-3 col-3">
+        <h4 className="text-center">Novo equipamento</h4>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-3">

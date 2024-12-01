@@ -2,7 +2,7 @@ import { Equipamento } from "@/types/equipamento";
 
 export const equipamentos: Equipamento[] = [
   {
-    id: 1,
+    id: "1",
     nome: "Monitor Dell UltraSharp 27",
     descricao:
       "Monitor de alta resolução com cores precisas para design gráfico.",
@@ -13,7 +13,7 @@ export const equipamentos: Equipamento[] = [
     updateAt: new Date("2023-10-20T14:45:00Z"),
   },
   {
-    id: 2,
+    id: "2",
     nome: "Notebook Lenovo ThinkPad X1 Carbon",
     descricao:
       "Notebook empresarial ultrafino com desempenho de alta qualidade.",
@@ -24,7 +24,7 @@ export const equipamentos: Equipamento[] = [
     updateAt: new Date("2024-02-10T16:20:00Z"),
   },
   {
-    id: 3,
+    id: "3",
     nome: "Impressora HP LaserJet Pro M404",
     descricao:
       "Impressora a laser monocromática com alta velocidade de impressão.",
@@ -35,7 +35,7 @@ export const equipamentos: Equipamento[] = [
     updateAt: new Date("2024-11-22T09:30:00Z"),
   },
   {
-    id: 4,
+    id: "4",
     nome: "Switch Cisco Catalyst 2960",
     descricao: "Switch gerenciável de 24 portas para redes corporativas.",
     observacoes: "Configurado para VLANs internas.",
@@ -45,7 +45,7 @@ export const equipamentos: Equipamento[] = [
     updateAt: new Date("2024-08-01T10:00:00Z"),
   },
   {
-    id: 5,
+    id: "5",
     nome: "Projetor Epson PowerLite X39",
     descricao:
       "Projetor de alta luminosidade para apresentações e salas de aula.",
