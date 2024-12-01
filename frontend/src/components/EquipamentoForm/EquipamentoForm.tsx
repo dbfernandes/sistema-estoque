@@ -20,7 +20,9 @@ const EquipamentoForm = ({ equipamento }: EquipamentoFormProps) => {
   return (
     <main>
       <div className="container mt-3 col-3">
-        <h4 className="text-center">Novo equipamento</h4>
+        <h4 className="text-center">
+          {equipamento ? "Atualizar equipamento" : "Novo equipamento"}
+        </h4>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-3">
@@ -107,7 +109,7 @@ const EquipamentoForm = ({ equipamento }: EquipamentoFormProps) => {
 
           <div className="d-grid col-12">
             <button type="submit" className="btn btn-primary">
-              Criar equipamento
+              {equipamento ? "Atualizar" : "Criar"}
             </button>
           </div>
         </form>
