@@ -94,6 +94,21 @@ const EquipamentoForm = ({ equipamento }: EquipamentoFormProps) => {
             <label htmlFor="numSerie" className="form-label">
               Número de série
             </label>
+
+            <select className="form-select" aria-label="Default select example">
+              <option selected value="Laboratorio">
+                Laboratorio
+              </option>
+              <option value="Reservado">Reservado</option>
+              <option value="Manutencao">Manuntenção</option>
+              <option value="Emprestado">Emprestado</option>
+            </select>
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="numSerie" className="form-label">
+              Número de série
+            </label>
             <input
               type="text"
               className="form-control"

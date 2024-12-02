@@ -5,13 +5,14 @@ export interface Equipamento {
   observacoes: string;
   origem: string;
   numSerie: string;
+  status: "Laboratorio" | "Manutencao" | "Emprestado" | "Reservado";
   createdAt: Date;
   updateAt: Date;
 }
 
 export type CreateEquipamentoDto = Pick<
   Equipamento,
-  "nome" | "descricao" | "observacoes" | "origem" | "numSerie"
+  "nome" | "descricao" | "observacoes" | "origem" | "numSerie" | "status"
 >;
 
 // export type CreateEquipamentoDto = Pick<
