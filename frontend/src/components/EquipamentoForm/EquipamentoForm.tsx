@@ -1,5 +1,6 @@
 "use client";
 
+import { useAdicionaEquipamento } from "@/hooks/useAdicionaEquipamento";
 import api from "@/services/api";
 import { CreateEquipamentoDto, Equipamento } from "@/types/equipamento";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -9,6 +10,8 @@ interface EquipamentoFormProps {
 }
 
 const EquipamentoForm = ({ equipamento }: EquipamentoFormProps) => {
+  const { mutate } = useAdicionaEquipamento();
+
   const {
     register,
     handleSubmit,
@@ -17,8 +20,8 @@ const EquipamentoForm = ({ equipamento }: EquipamentoFormProps) => {
   } = useForm<CreateEquipamentoDto>();
 
   const onSubmit: SubmitHandler<CreateEquipamentoDto> = (data) => {
-    console.log(data)
-    api.post("/equipamento", data)
+    console.log(data);
+    mutate(data);
   };
 
   return (
