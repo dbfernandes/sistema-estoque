@@ -1,8 +1,12 @@
+"use client";
 import CardEquipamento from "@/components/CardEquipamento/CardEquipamento";
+import { useListaEquipamentos } from "@/hooks/useListaEquipamentos";
 import { equipamentos } from "@/mocks/equipamentos";
 import { Equipamento } from "@/types/equipamento";
 
 const EquipamentosCriar = () => {
+  const { equipamentos, isError, isPending } = useListaEquipamentos();
+
   return (
     <>
       <div className="container mt-2">
