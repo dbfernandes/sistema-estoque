@@ -1,5 +1,6 @@
 "use client";
 
+import api from "@/services/api";
 import { CreateEquipamentoDto, Equipamento } from "@/types/equipamento";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -15,7 +16,10 @@ const EquipamentoForm = ({ equipamento }: EquipamentoFormProps) => {
     formState: { errors },
   } = useForm<CreateEquipamentoDto>();
 
-  const onSubmit: SubmitHandler<CreateEquipamentoDto> = (data) => {};
+  const onSubmit: SubmitHandler<CreateEquipamentoDto> = (data) => {
+    console.log(data)
+    api.post("/equipamento", data)
+  };
 
   return (
     <main>
@@ -92,10 +96,14 @@ const EquipamentoForm = ({ equipamento }: EquipamentoFormProps) => {
 
           <div className="mb-3">
             <label htmlFor="numSerie" className="form-label">
-              Número de série
+              Status
             </label>
 
-            <select className="form-select" aria-label="Default select example">
+            <select
+              className="form-select"
+              aria-label="Default select example"
+              {...register("statusEquip", { required: true })}
+            >
               <option selected value="Laboratorio">
                 Laboratorio
               </option>

@@ -49,13 +49,13 @@ const Navbar = () => {
                     Cadastro
                   </a>
                 </li>
-                <li className="nav-item">
-                  <a className="nav-link active" href="/equipamentos">
-                    Equipamentos
-                  </a>
-                </li>
               </>
             )}
+            <li className="nav-item">
+              <a className="nav-link active" href="/equipamentos">
+                Equipamentos
+              </a>
+            </li>
           </ul>
           <p className="nav-item mb-2 me-2 mb-md-0">{auth ? auth.nome : ""}</p>
           {auth && (

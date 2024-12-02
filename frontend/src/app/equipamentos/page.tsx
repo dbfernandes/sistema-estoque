@@ -10,6 +10,8 @@ const EquipamentosCriar = () => {
   return (
     <>
       <div className="container mt-2">
+        <h3>Equipamentos:</h3>
+
         <div className="row">
           {equipamentos.map((equipamento: Equipamento) => (
             <CardEquipamento equipamento={equipamento} key={equipamento.id} />

@@ -2,12 +2,11 @@
 import { equipamentos } from "@/mocks/equipamentos";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { useBuscaEquipamento } from "@/hooks/useBuscaEquipamento";
 
 const EquipamentoVer = () => {
   const params = useParams<{ id: string }>();
-  const equipamento = equipamentos.find(
-    (equipamento) => equipamento.id == params?.id
-  );
+  const { equipamento } = useBuscaEquipamento(params.id);
 
   return (
     <div className="container mt-3">
