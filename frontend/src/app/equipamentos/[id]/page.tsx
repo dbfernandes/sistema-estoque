@@ -1,8 +1,8 @@
 "use client";
-import { equipamentos } from "@/mocks/equipamentos";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useBuscaEquipamento } from "@/hooks/useBuscaEquipamento";
+import { useRemoveEquipamento } from "@/hooks/useRemoveEquipamento";
 
 const EquipamentoVer = () => {
   const params = useParams<{ id: string }>();
@@ -43,6 +43,13 @@ const EquipamentoVer = () => {
       >
         Atualizar equipamento
       </Link>
+
+      {/* <button
+        className="btn btn-primary mt-3 ms-2"
+        onClick={() => mutate(params.id)}
+      >
+        Remover equipamento
+      </button> */}
     </div>
   );
 };

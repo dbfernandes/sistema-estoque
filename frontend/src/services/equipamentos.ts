@@ -14,3 +14,7 @@ export async function adicionaEquipamento(
 ): Promise<Equipamento> {
   return (await api.post("/equipamento", equipamento)).data;
 }
+
+export async function removeEquipamento(id: string): Promise<Equipamento> {
+  return (await api.delete(`equipamento/${id}`)).data;
+}
