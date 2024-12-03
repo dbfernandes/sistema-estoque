@@ -1,0 +1,48 @@
+import { Equipamento } from "@/types/equipamento";
+
+export const equipamentos: Equipamento[] = [
+  {
+    id: "1",
+    nome: "Notebook Dell Inspiron",
+    descricao: "Notebook para uso geral, Intel i7, 16GB RAM, 512GB SSD",
+    observacoes: "Possui um pequeno arranhão na tampa",
+    origem: "Laboratório de Informática",
+    numSerie: "DEL12345",
+    status: "Laboratorio",
+    createdAt: new Date("2023-01-15T10:00:00"),
+    updateAt: new Date("2023-02-01T14:30:00"),
+  },
+  {
+    id: "2",
+    nome: "Projetor Epson X200",
+    descricao: "Projetor Full HD com suporte a HDMI",
+    observacoes: "Inclui cabo HDMI de 2 metros",
+    origem: "Sala de Audiovisual",
+    numSerie: "EPS23456",
+    status: "Emprestado",
+    createdAt: new Date("2023-02-10T12:00:00"),
+    updateAt: new Date("2023-03-01T09:00:00"),
+  },
+  {
+    id: "3",
+    nome: "Câmera Canon EOS Rebel",
+    descricao: "Câmera DSLR com lente de 18-55mm",
+    observacoes: "Bateria extra inclusa",
+    origem: "Laboratório de Fotografia",
+    numSerie: "CAN67890",
+    status: "Reservado",
+    createdAt: new Date("2023-03-05T15:00:00"),
+    updateAt: new Date("2023-03-10T11:45:00"),
+  },
+  {
+    id: "4",
+    nome: "Impressora HP LaserJet",
+    descricao: "Impressora a laser monocromática",
+    observacoes: "Necessita de manutenção preventiva",
+    origem: "Escritório Administrativo",
+    numSerie: "HP98765",
+    status: "Manutencao",
+    createdAt: new Date("2023-04-20T08:00:00"),
+    updateAt: new Date("2023-04-25T13:20:00"),
+  },
+];

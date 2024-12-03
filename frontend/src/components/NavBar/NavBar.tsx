@@ -5,7 +5,7 @@ import api from "@/services/api";
 import router from "next/router";
 import { useContext } from "react";
 
-const NavBar = () => {
+const Navbar = () => {
   const { auth, setAuth } = useContext(AuthContext);
   const onLogout = () => {
     api.post("/logout", undefined, { withCredentials: true }).then((data) => {
@@ -17,7 +17,7 @@ const NavBar = () => {
     <nav className="navbar bg-primary navbar-expand-lg ">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
-          Navbar
+          Sistema
         </a>
         <button
           className="navbar-toggler"
@@ -51,6 +51,11 @@ const NavBar = () => {
                 </li>
               </>
             )}
+            <li className="nav-item">
+              <a className="nav-link active" href="/equipamentos">
+                Equipamentos
+              </a>
+            </li>
           </ul>
           <p className="nav-item mb-2 me-2 mb-md-0">{auth ? auth.nome : ""}</p>
           {auth && (
@@ -70,4 +75,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default Navbar;
