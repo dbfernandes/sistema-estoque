@@ -1,8 +1,7 @@
 "use client";
-
 import { useAdicionaEquipamento } from "@/hooks/useAdicionaEquipamento";
-import api from "@/services/api";
 import { CreateEquipamentoDto, Equipamento } from "@/types/equipamento";
+import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 interface EquipamentoFormProps {
@@ -10,7 +9,9 @@ interface EquipamentoFormProps {
 }
 
 const EquipamentoForm = ({ equipamento }: EquipamentoFormProps) => {
+  const router = useRouter();
   const { mutate } = useAdicionaEquipamento();
+
   const {
     register,
     handleSubmit,
@@ -20,6 +21,7 @@ const EquipamentoForm = ({ equipamento }: EquipamentoFormProps) => {
   const onSubmit: SubmitHandler<CreateEquipamentoDto> = (data) => {
     console.log(data);
     mutate(data);
+    router.push("/equipamentos");
   };
 
   return (
