@@ -11,11 +11,9 @@ interface EquipamentoFormProps {
 
 const EquipamentoForm = ({ equipamento }: EquipamentoFormProps) => {
   const { mutate } = useAdicionaEquipamento();
-
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<CreateEquipamentoDto>();
 
@@ -72,7 +70,7 @@ const EquipamentoForm = ({ equipamento }: EquipamentoFormProps) => {
             <textarea
               className="form-control"
               id="exampleFormControlTextarea1"
-              rows={2}
+              rows={1}
               value={equipamento?.observacoes}
               {...register("observacoes", { required: true })}
             ></textarea>
@@ -88,7 +86,7 @@ const EquipamentoForm = ({ equipamento }: EquipamentoFormProps) => {
             <textarea
               className="form-control"
               id="origem"
-              rows={2}
+              rows={1}
               value={equipamento?.origem}
               {...register("origem", { required: true })}
             ></textarea>
@@ -104,12 +102,10 @@ const EquipamentoForm = ({ equipamento }: EquipamentoFormProps) => {
 
             <select
               className="form-select"
-              aria-label="Default select example"
+              value={equipamento?.statusEquip}
               {...register("statusEquip", { required: true })}
             >
-              <option selected value="Laboratorio">
-                Laboratorio
-              </option>
+              <option value="Laboratorio">Laboratório</option>
               <option value="Reservado">Reservado</option>
               <option value="Manutencao">Manuntenção</option>
               <option value="Emprestado">Emprestado</option>

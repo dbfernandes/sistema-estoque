@@ -1,4 +1,8 @@
-import { CreateEquipamentoDto, Equipamento } from "@/types/equipamento";
+import {
+  CreateEquipamentoDto,
+  Equipamento,
+  UpdateEquipamentoDto,
+} from "@/types/equipamento";
 import api from "./api";
 
 export async function listaEquipamentos(): Promise<Equipamento[]> {
@@ -17,4 +21,10 @@ export async function adicionaEquipamento(
 
 export async function removeEquipamento(id: string): Promise<Equipamento> {
   return (await api.delete(`equipamento/${id}`)).data;
+}
+
+export async function atualizaEquipamento(
+  equipamento: UpdateEquipamentoDto
+): Promise<Equipamento> {
+  return (await api.put(`equipamento/${equipamento.id}`, equipamento)).data;
 }

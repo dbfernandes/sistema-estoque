@@ -15,11 +15,13 @@ export type CreateEquipamentoDto = Pick<
   "nome" | "descricao" | "observacoes" | "origem" | "numSerie" | "statusEquip"
 >;
 
-// export type CreateEquipamentoDto = Pick<
-//   Equipamento,
-//   "nome" | "preco" | "estoque"
-// >;
-// export type UpdateEquipamentoDto = Pick<
-//   Equipamento,
-//   "nome" | "preco" | "estoque"
-// >;
+export type UpdateEquipamentoDto = Pick<
+  Equipamento,
+  | "id"
+  | "nome"
+  | "descricao"
+  | "observacoes"
+  | "origem"
+  | "numSerie"
+  | "statusEquip"
+>;
