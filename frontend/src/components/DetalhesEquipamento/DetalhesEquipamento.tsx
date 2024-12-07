@@ -1,10 +1,20 @@
+import { useRemoveEquipamento } from "@/hooks/useRemoveEquipamento";
 import { Equipamento } from "@/types/equipamento";
+import { useRouter } from "next/navigation";
 
 interface DetalhesEquipamentoProps {
   equipamento: Equipamento;
 }
 
 const DetalhesEquipamento = ({ equipamento }: DetalhesEquipamentoProps) => {
+  const router = useRouter();
+  const { mutate } = useRemoveEquipamento(
+    () => {
+      router.push("/equipamentos");
+    },
+    () => {}
+  );
+
   return (
     <div className="card mt-3 w-50">
       <div className="card-header">{equipamento.nome}</div>
@@ -24,7 +34,11 @@ const DetalhesEquipamento = ({ equipamento }: DetalhesEquipamentoProps) => {
         <button type="button" className="btn btn-warning me-2">
           Editar
         </button>
-        <button type="button" className="btn btn-danger">
+        <button
+          type="button"
+          className="btn btn-danger"
+          onClick={() => mutate(equipamento.id)}
+        >
           Excluir
         </button>
       </div>
