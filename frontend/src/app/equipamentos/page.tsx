@@ -9,7 +9,7 @@ const EquipamentosCriar = () => {
 
   return (
     <>
-      <div className="container mt-2">
+      <div className="container mt-5">
         <h3>Equipamentos:</h3>
 
         <div className="row">
