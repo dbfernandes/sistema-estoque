@@ -1,5 +1,7 @@
 "use client";
 import CardEquipamento from "@/components/CardEquipamento/CardEquipamento";
+import Form from "@/components/Form/Form";
+import Modal from "@/components/Modal/Modal";
 import { useListaEquipamentos } from "@/hooks/useListaEquipamentos";
 import { equipamentos } from "@/mocks/equipamentos";
 import { Equipamento } from "@/types/equipamento";
@@ -14,9 +16,22 @@ const EquipamentosCriar = () => {
         <h3>Equipamentos:</h3>
 
         <div className="d-flex justify-content-end mb-3">
-          <Link type="button" className="btn btn-success p-2" href={"/equipamentos/criar"}>
+          {/* <Link
+            type="button"
+            className="btn btn-success p-2"
+            href={"/equipamentos/criar"}
+          >
             Adicionar equipamento
-          </Link>
+          </Link> */}
+
+          <button
+            type="button"
+            className="btn btn-success p-2"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            Adicionar Equipamento
+          </button>
         </div>
 
         <div className="row">
@@ -25,6 +40,10 @@ const EquipamentosCriar = () => {
           ))}
         </div>
       </div>
+
+      <Modal titulo="Novo Equipamento">
+        <Form />
+      </Modal>
     </>
   );
 };
