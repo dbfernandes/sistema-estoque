@@ -1,5 +1,4 @@
-import { useForm, SubmitHandler } from "react-hook-form";
-import { useAdicionaEquipamento } from "@/hooks/useAdicionaEquipamento";
+import { useForm } from "react-hook-form";
 import {
   CreateEquipamentoDto,
   Equipamento,
