@@ -17,14 +17,6 @@ const EquipamentosCriar = () => {
         <h3>Equipamentos:</h3>
 
         <div className="d-flex justify-content-end mb-3">
-          {/* <Link
-            type="button"
-            className="btn btn-success p-2"
-            href={"/equipamentos/criar"}
-          >
-            Adicionar equipamento
-          </Link> */}
-
           <button
             type="button"
             className="btn btn-success p-2"

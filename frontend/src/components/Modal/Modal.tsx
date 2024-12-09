@@ -20,22 +20,6 @@ const Modal = ({ titulo, children }: ModalProps) => {
             ></button>
           </div>
           <div className="modal-body">{children}</div>
-          {/* <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Fechar
-            </button>
-            <button
-              type="button"
-              className="btn btn-primary"
-              data-bs-dismiss="modal"
-            >
-              Salvar
-            </button>
-          </div> */}
         </div>
       </div>
     </div>
