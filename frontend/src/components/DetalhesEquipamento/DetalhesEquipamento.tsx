@@ -4,21 +4,30 @@ import { useRouter } from "next/navigation";
 import Modal from "../Modal/Modal";
 import Form from "../Form/Form";
 import { useAtualizaEquipamento } from "@/hooks/useAtualizaEquipamento";
+import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface DetalhesEquipamentoProps {
   equipamento: Equipamento;
 }
 
 const DetalhesEquipamento = ({ equipamento }: DetalhesEquipamentoProps) => {
+  const queryClient = useQueryClient();
   const router = useRouter();
   const { mutate: atualizaEquipamento } = useAtualizaEquipamento(
-    equipamento.id
+    equipamento.id,
+    () => {
+      queryClient.invalidateQueries({ queryKey: ["buscaEquipamento"] });
+      toast.success("Equipamento atualizado com sucesso!");
+    },
+    () => toast.error("Ocorreu um erro ao tentar atualizar o equipamento")
   );
-  const { mutate } = useRemoveEquipamento(
+  const { mutate: removeEquipamento } = useRemoveEquipamento(
     () => {
       router.push("/equipamentos");
+      toast.success("Equipamento excluido com sucesso!");
     },
-    () => {}
+    () => toast.error("Ocorreu um erro ao tentar excluir o equipamento!")
   );
 
   return (
@@ -48,7 +57,7 @@ const DetalhesEquipamento = ({ equipamento }: DetalhesEquipamentoProps) => {
         <button
           type="button"
           className="btn btn-danger"
-          onClick={() => mutate(equipamento.id)}
+          onClick={() => removeEquipamento(equipamento.id)}
         >
           Excluir
         </button>

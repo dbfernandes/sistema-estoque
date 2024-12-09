@@ -5,11 +5,21 @@ import Modal from "@/components/Modal/Modal";
 import { useAdicionaEquipamento } from "@/hooks/useAdicionaEquipamento";
 import { useListaEquipamentos } from "@/hooks/useListaEquipamentos";
 import { CreateEquipamentoDto, Equipamento } from "@/types/equipamento";
-import Link from "next/link";
+import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 const EquipamentosCriar = () => {
+  const queryClient = useQueryClient();
   const { equipamentos, isError, isPending } = useListaEquipamentos();
-  const { mutate: criarEquipamento } = useAdicionaEquipamento();
+  const { mutate: criarEquipamento } = useAdicionaEquipamento(
+    () => {
+      queryClient.invalidateQueries({ queryKey: ["listaEquipamentos"] });
+      toast.success("Equipamento criado com sucesso!");
+    },
+    () => {
+      toast.error("Ocorreu um erro ao tentar adicionar o equipamento");
+    }
+  );
 
   return (
     <>
