@@ -2,12 +2,16 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useAdicionaEquipamento } from "@/hooks/useAdicionaEquipamento";
 import { CreateEquipamentoDto, Equipamento } from "@/types/equipamento";
 
-const Form = () => {
+interface FormProps {
+  equipamento?: Equipamento;
+}
+
+const Form = ({equipamento}: FormProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<CreateEquipamentoDto>();
+  } = useForm<CreateEquipamentoDto>({values: equipamento});
 
   const { mutate } = useAdicionaEquipamento();
 
@@ -118,7 +122,7 @@ const Form = () => {
           )}
 
           <button type="submit" className="btn btn-primary mt-2 w-100">
-           Criar
+            Criar
           </button>
         </div>
       </form>

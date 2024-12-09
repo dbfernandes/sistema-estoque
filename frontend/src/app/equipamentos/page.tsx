@@ -10,6 +10,8 @@ import Link from "next/link";
 const EquipamentosCriar = () => {
   const { equipamentos, isError, isPending } = useListaEquipamentos();
 
+  console.log("oi");
+
   return (
     <>
       <div className="container mt-5">

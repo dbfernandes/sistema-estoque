@@ -1,6 +1,8 @@
 import { useRemoveEquipamento } from "@/hooks/useRemoveEquipamento";
 import { Equipamento } from "@/types/equipamento";
 import { useRouter } from "next/navigation";
+import Modal from "../Modal/Modal";
+import Form from "../Form/Form";
 
 interface DetalhesEquipamentoProps {
   equipamento: Equipamento;
@@ -31,7 +33,12 @@ const DetalhesEquipamento = ({ equipamento }: DetalhesEquipamentoProps) => {
       </ul>
 
       <div className="card-footer text-body-secondary">
-        <button type="button" className="btn btn-warning me-2">
+        <button
+          type="button"
+          className="btn btn-warning me-2"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
           Editar
         </button>
         <button
@@ -42,6 +49,10 @@ const DetalhesEquipamento = ({ equipamento }: DetalhesEquipamentoProps) => {
           Excluir
         </button>
       </div>
+
+      <Modal titulo="Atualizar Equipamento">
+        <Form equipamento={equipamento}/>
+      </Modal>
     </div>
   );
 };
