@@ -24,7 +24,8 @@ export async function removeEquipamento(id: string): Promise<Equipamento> {
 }
 
 export async function atualizaEquipamento(
+  id: string,
   equipamento: UpdateEquipamentoDto
 ): Promise<Equipamento> {
-  return (await api.put(`equipamento/${equipamento.id}`, equipamento)).data;
+  return (await api.put(`equipamento/${id}`, equipamento)).data;
 }

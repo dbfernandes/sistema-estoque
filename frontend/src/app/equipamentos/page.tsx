@@ -2,15 +2,14 @@
 import CardEquipamento from "@/components/CardEquipamento/CardEquipamento";
 import Form from "@/components/Form/Form";
 import Modal from "@/components/Modal/Modal";
+import { useAdicionaEquipamento } from "@/hooks/useAdicionaEquipamento";
 import { useListaEquipamentos } from "@/hooks/useListaEquipamentos";
-import { equipamentos } from "@/mocks/equipamentos";
-import { Equipamento } from "@/types/equipamento";
+import { CreateEquipamentoDto, Equipamento } from "@/types/equipamento";
 import Link from "next/link";
 
 const EquipamentosCriar = () => {
   const { equipamentos, isError, isPending } = useListaEquipamentos();
-
-  console.log("oi");
+  const { mutate: criarEquipamento } = useAdicionaEquipamento();
 
   return (
     <>
@@ -44,7 +43,12 @@ const EquipamentosCriar = () => {
       </div>
 
       <Modal titulo="Novo Equipamento">
-        <Form />
+        <Form
+          onSubmit={(equipamento: CreateEquipamentoDto) => {
+            console.log(equipamento);
+            criarEquipamento(equipamento);
+          }}
+        />
       </Modal>
     </>
   );

@@ -17,11 +17,5 @@ export type CreateEquipamentoDto = Pick<
 
 export type UpdateEquipamentoDto = Pick<
   Equipamento,
-  | "id"
-  | "nome"
-  | "descricao"
-  | "observacoes"
-  | "origem"
-  | "numSerie"
-  | "statusEquip"
+  "nome" | "descricao" | "observacoes" | "origem" | "numSerie" | "statusEquip"
 >;

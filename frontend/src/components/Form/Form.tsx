@@ -1,24 +1,31 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useAdicionaEquipamento } from "@/hooks/useAdicionaEquipamento";
-import { CreateEquipamentoDto, Equipamento } from "@/types/equipamento";
+import {
+  CreateEquipamentoDto,
+  Equipamento,
+  UpdateEquipamentoDto,
+} from "@/types/equipamento";
 
 interface FormProps {
   equipamento?: Equipamento;
+  onSubmit: (data: CreateEquipamentoDto | UpdateEquipamentoDto) => void;
 }
 
-const Form = ({equipamento}: FormProps) => {
+const Form = ({ equipamento, onSubmit }: FormProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<CreateEquipamentoDto>({values: equipamento});
-
-  const { mutate } = useAdicionaEquipamento();
-
-  const onSubmit: SubmitHandler<CreateEquipamentoDto> = (data) => {
-    console.log(data);
-    mutate(data);
-  };
+  } = useForm<CreateEquipamentoDto>({
+    defaultValues: {
+      nome: equipamento?.nome,
+      descricao: equipamento?.descricao,
+      observacoes: equipamento?.observacoes,
+      origem: equipamento?.origem,
+      numSerie: equipamento?.numSerie,
+      statusEquip: equipamento?.statusEquip,
+    },
+  });
 
   return (
     <>
@@ -32,7 +39,6 @@ const Form = ({equipamento}: FormProps) => {
             className="form-control"
             id="nome"
             aria-describedby="nome"
-            //value={equipamento?.nome}
             {...register("nome", { required: true })}
           />
           {errors.nome && (
@@ -48,7 +54,6 @@ const Form = ({equipamento}: FormProps) => {
             className="form-control"
             id="descricao"
             rows={2}
-            //value={equipamento?.descricao}
             {...register("descricao", { required: true })}
           ></textarea>
           {errors.descricao && (
@@ -64,7 +69,6 @@ const Form = ({equipamento}: FormProps) => {
             className="form-control"
             id="exampleFormControlTextarea1"
             rows={1}
-            //value={equipamento?.observacoes}
             {...register("observacoes", { required: true })}
           ></textarea>
           {errors.observacoes && (
@@ -80,7 +84,6 @@ const Form = ({equipamento}: FormProps) => {
             className="form-control"
             id="origem"
             rows={1}
-            //value={equipamento?.origem}
             {...register("origem", { required: true })}
           ></textarea>
           {errors.origem && (
@@ -95,7 +98,6 @@ const Form = ({equipamento}: FormProps) => {
 
           <select
             className="form-select"
-            //value={equipamento?.statusEquip}
             {...register("statusEquip", { required: true })}
           >
             <option value="Laboratorio">Laboratório</option>
@@ -114,7 +116,6 @@ const Form = ({equipamento}: FormProps) => {
             className="form-control"
             id="numSerie"
             aria-describedby="numSerie"
-            //value={equipamento?.numSerie}
             {...register("numSerie", { required: true })}
           />
           {errors.numSerie && (
@@ -122,7 +123,7 @@ const Form = ({equipamento}: FormProps) => {
           )}
 
           <button type="submit" className="btn btn-primary mt-2 w-100">
-            Criar
+            Salvar
           </button>
         </div>
       </form>

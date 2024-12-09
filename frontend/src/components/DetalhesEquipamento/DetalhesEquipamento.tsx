@@ -1,8 +1,9 @@
 import { useRemoveEquipamento } from "@/hooks/useRemoveEquipamento";
-import { Equipamento } from "@/types/equipamento";
+import { Equipamento, UpdateEquipamentoDto } from "@/types/equipamento";
 import { useRouter } from "next/navigation";
 import Modal from "../Modal/Modal";
 import Form from "../Form/Form";
+import { useAtualizaEquipamento } from "@/hooks/useAtualizaEquipamento";
 
 interface DetalhesEquipamentoProps {
   equipamento: Equipamento;
@@ -10,6 +11,9 @@ interface DetalhesEquipamentoProps {
 
 const DetalhesEquipamento = ({ equipamento }: DetalhesEquipamentoProps) => {
   const router = useRouter();
+  const { mutate: atualizaEquipamento } = useAtualizaEquipamento(
+    equipamento.id
+  );
   const { mutate } = useRemoveEquipamento(
     () => {
       router.push("/equipamentos");
@@ -51,7 +55,13 @@ const DetalhesEquipamento = ({ equipamento }: DetalhesEquipamentoProps) => {
       </div>
 
       <Modal titulo="Atualizar Equipamento">
-        <Form equipamento={equipamento}/>
+        <Form
+          equipamento={equipamento}
+          onSubmit={(data: UpdateEquipamentoDto) => {
+            console.log(data);
+            atualizaEquipamento(data);
+          }}
+        />
       </Modal>
     </div>
   );
