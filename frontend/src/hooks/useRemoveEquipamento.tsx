@@ -1,4 +1,4 @@
-import { removeEquipamento } from "@/services/equipamentos";
+import { removeEquipamento } from "@/services/equipamento";
 import { useMutation } from "@tanstack/react-query";
 
 export function useRemoveEquipamento(

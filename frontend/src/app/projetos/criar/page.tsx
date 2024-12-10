@@ -1,8 +1,14 @@
 "use client";
+import { useAdicionaProjeto } from "@/hooks/useAdicionaProjeto";
 import { CreateProjetoDto } from "@/types/projeto";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const ProjetoCriar = () => {
+  const { mutate: adicionaProjeto } = useAdicionaProjeto(
+    () => toast.success("ok"),
+    () => toast.error("não ok")
+  );
   const {
     register,
     handleSubmit,
@@ -11,6 +17,7 @@ const ProjetoCriar = () => {
 
   const onSubmit: SubmitHandler<CreateProjetoDto> = (data) => {
     console.log(data);
+    adicionaProjeto(data);
   };
 
   return (

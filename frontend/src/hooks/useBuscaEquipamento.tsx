@@ -1,4 +1,4 @@
-import { buscaEquipamento } from "@/services/equipamentos";
+import { buscaEquipamento } from "@/services/equipamento";
 import { useQuery } from "@tanstack/react-query";
 
 export function useBuscaEquipamento(id: string) {

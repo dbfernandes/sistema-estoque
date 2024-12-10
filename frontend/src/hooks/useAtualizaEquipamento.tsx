@@ -1,4 +1,4 @@
-import { atualizaEquipamento } from "@/services/equipamentos";
+import { atualizaEquipamento } from "@/services/equipamento";
 import { UpdateEquipamentoDto } from "@/types/equipamento";
 import { useMutation } from "@tanstack/react-query";
 

@@ -1,4 +1,4 @@
-import { adicionaEquipamento } from "@/services/equipamentos";
+import { adicionaEquipamento } from "@/services/equipamento";
 import { CreateEquipamentoDto } from "@/types/equipamento";
 import { useMutation } from "@tanstack/react-query";
 
