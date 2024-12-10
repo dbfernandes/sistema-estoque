@@ -1,0 +1,75 @@
+"use client";
+import { CreateProjetoDto } from "@/types/projeto";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+const ProjetoCriar = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CreateProjetoDto>();
+
+  const onSubmit: SubmitHandler<CreateProjetoDto> = (data) => {
+    console.log(data);
+  };
+
+  return (
+    <>
+      <main className="container">
+        <h1>Criar projeto</h1>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="mb-3">
+            <label htmlFor="nome" className="form-label">
+              Nome
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="nome"
+              {...register("nome", { required: true })}
+            />
+            {errors.nome && (
+              <span className="text-danger">Esse campo é obrigatório</span>
+            )}
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="responsavel" className="form-label">
+              Responsável
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="responsavel"
+              {...register("responsavel", { required: true })}
+            />
+            {errors.responsavel && (
+              <span className="text-danger">Esse campo é obrigatório</span>
+            )}
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="descricao" className="form-label">
+              Descrição
+            </label>
+            <textarea
+              className="form-control"
+              id="descricao"
+              rows={2}
+              {...register("descricao", { required: true })}
+            ></textarea>
+            {errors.descricao && (
+              <span className="text-danger">Esse campo é obrigatório</span>
+            )}
+          </div>
+
+          <button type="submit" className="btn btn-primary">
+            Salvar
+          </button>
+        </form>
+      </main>
+    </>
+  );
+};
+
+export default ProjetoCriar;
