@@ -1,12 +1,17 @@
 "use client";
 import { useAdicionaProjeto } from "@/hooks/useAdicionaProjeto";
 import { CreateProjetoDto } from "@/types/projeto";
+import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 const ProjetoCriar = () => {
+  const router = useRouter();
   const { mutate: adicionaProjeto } = useAdicionaProjeto(
-    () => toast.success("Projeto adicionado com sucesso!"),
+    () => {
+      toast.success("Projeto adicionado com sucesso!");
+      router.push("/projetos");
+    },
     () => toast.error("Houve um erro ao adicionar o projeto.")
   );
   const {

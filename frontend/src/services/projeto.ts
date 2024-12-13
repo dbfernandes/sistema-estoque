@@ -10,3 +10,7 @@ export async function adicionaProjeto(
 export async function listaProjetos(): Promise<Projeto[]> {
   return (await api.get("/projeto")).data;
 }
+
+export async function removeProjeto(id: string): Promise<Projeto> {
+  return (await api.delete(`/projeto/${id}`)).data;
+}
