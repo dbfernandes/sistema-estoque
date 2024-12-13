@@ -4,6 +4,8 @@ import { CreateProjetoDto } from "@/types/projeto";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { joiResolver } from "@hookform/resolvers/joi";
+import projetoSchema from "@/schemas/projeto";
 
 const ProjetoCriar = () => {
   const router = useRouter();
@@ -18,7 +20,9 @@ const ProjetoCriar = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<CreateProjetoDto>();
+  } = useForm<CreateProjetoDto>({
+    resolver: joiResolver(projetoSchema),
+  });
 
   const onSubmit: SubmitHandler<CreateProjetoDto> = (data) => {
     console.log(data);
@@ -36,12 +40,12 @@ const ProjetoCriar = () => {
             </label>
             <input
               type="text"
-              className="form-control"
+              className="form-control mb-2"
               id="nome"
-              {...register("nome", { required: true })}
+              {...register("nome")}
             />
             {errors.nome && (
-              <span className="text-danger">Esse campo é obrigatório</span>
+              <span className="text-danger">{errors.nome.message}</span>
             )}
           </div>
 
@@ -53,10 +57,10 @@ const ProjetoCriar = () => {
               type="text"
               className="form-control"
               id="responsavel"
-              {...register("responsavel", { required: true })}
+              {...register("responsavel")}
             />
             {errors.responsavel && (
-              <span className="text-danger">Esse campo é obrigatório</span>
+              <span className="text-danger">{errors.responsavel.message}</span>
             )}
           </div>
 
@@ -68,10 +72,10 @@ const ProjetoCriar = () => {
               className="form-control"
               id="descricao"
               rows={2}
-              {...register("descricao", { required: true })}
+              {...register("descricao")}
             ></textarea>
             {errors.descricao && (
-              <span className="text-danger">Esse campo é obrigatório</span>
+              <span className="text-danger">{errors.descricao.message}</span>
             )}
           </div>
 
