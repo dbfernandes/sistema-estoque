@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "@/components/Navbar/Navbar";
 import BootstrapClient from "@/components/BootstrapClient";
 import AuthProvider from "@/provider/AuthProvider";
 import { ReactQueryClientProvider } from "@/components/ReactQueryClient/ReactQueryClient";
 import { ToastContainer } from "react-toastify";
 
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 
 export const metadata: Metadata = {
