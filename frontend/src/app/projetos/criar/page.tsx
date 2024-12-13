@@ -6,8 +6,8 @@ import { toast } from "react-toastify";
 
 const ProjetoCriar = () => {
   const { mutate: adicionaProjeto } = useAdicionaProjeto(
-    () => toast.success("ok"),
-    () => toast.error("não ok")
+    () => toast.success("Projeto adicionado com sucesso!"),
+    () => toast.error("Houve um erro ao adicionar o projeto.")
   );
   const {
     register,
@@ -22,7 +22,7 @@ const ProjetoCriar = () => {
 
   return (
     <>
-      <main className="container">
+      <main className="container col-3">
         <h1>Criar projeto</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-3">
@@ -70,7 +70,7 @@ const ProjetoCriar = () => {
             )}
           </div>
 
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary w-100">
             Salvar
           </button>
         </form>

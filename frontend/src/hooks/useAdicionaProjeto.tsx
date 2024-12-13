@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 
 export function useAdicionaProjeto(onSuccess: () => void, onError: () => void) {
   const { mutate, isPending } = useMutation({
-    mutationFn: (projeto: CreateProjetoDto) => adicionaProjeto(projeto),
+    mutationFn: adicionaProjeto,
     onSuccess,
     onError,
   });
