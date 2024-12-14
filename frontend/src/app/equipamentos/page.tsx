@@ -1,15 +1,13 @@
 "use client";
-import CardEquipamento from "@/components/CardEquipamento/CardEquipamento";
 import EquipamentoForm from "@/components/EquipamentoForm/EquipamentoForm";
+import ListagemEquipamentos from "@/components/ListagemEquipamentos/ListagemEquipamentos";
 import { useAdicionaEquipamento } from "@/hooks/useAdicionaEquipamento";
-import { useListaEquipamentos } from "@/hooks/useListaEquipamentos";
-import { CreateEquipamentoDto, Equipamento } from "@/types/equipamento";
+import { CreateEquipamentoDto } from "@/types/equipamento";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
 const EquipamentosCriar = () => {
   const queryClient = useQueryClient();
-  const { equipamentos, isError, isPending } = useListaEquipamentos();
   const { mutate: criarEquipamento } = useAdicionaEquipamento(
     () => {
       queryClient.invalidateQueries({ queryKey: ["listaEquipamentos"] });
@@ -38,9 +36,7 @@ const EquipamentosCriar = () => {
         </div>
 
         <div className="row">
-          {equipamentos.map((equipamento: Equipamento) => (
-            <CardEquipamento equipamento={equipamento} key={equipamento.id} />
-          ))}
+          <ListagemEquipamentos />
         </div>
       </div>
 
