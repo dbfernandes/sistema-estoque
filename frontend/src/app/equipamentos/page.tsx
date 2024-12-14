@@ -11,7 +11,7 @@ const EquipamentosCriar = () => {
   const { mutate: criarEquipamento } = useAdicionaEquipamento(
     () => {
       queryClient.invalidateQueries({ queryKey: ["listaEquipamentos"] });
-      toast.success("Equipamento criado com sucesso!");
+      toast.success("Equipamento adicionado.");
     },
     () => {
       toast.error("Ocorreu um erro ao tentar adicionar o equipamento");

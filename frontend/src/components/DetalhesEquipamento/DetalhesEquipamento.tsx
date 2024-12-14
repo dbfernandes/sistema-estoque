@@ -51,6 +51,7 @@ const DetalhesEquipamento = ({ equipamento }: DetalhesEquipamentoProps) => {
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
         >
+          <i className="bi bi-pencil-fill me-1"></i>
           Editar
         </button>
         <button
@@ -58,6 +59,7 @@ const DetalhesEquipamento = ({ equipamento }: DetalhesEquipamentoProps) => {
           className="btn btn-danger"
           onClick={() => removeEquipamento(equipamento.id)}
         >
+          <i className="bi bi-trash-fill me-1"></i>
           Excluir
         </button>
       </div>

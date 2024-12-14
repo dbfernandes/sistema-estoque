@@ -35,9 +35,7 @@ const equipamentoSchema = Joi.object({
   descricao: Joi.string().messages({
     "string.empty": "A descrição é obrigatória.",
   }),
-  observacoes: Joi.string().allow("").messages({
-    "string.base": "As observações devem ser um texto.",
-  }),
+  observacoes: Joi.string().allow(""),
 });
 
 export default equipamentoSchema;

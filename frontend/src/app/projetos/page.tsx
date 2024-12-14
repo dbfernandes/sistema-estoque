@@ -10,10 +10,10 @@ const Page = () => {
   const { projetos } = useListaProjetos();
   const { mutate: removeProjeto } = useRemoveProjeto(
     () => {
-      toast.success("Projeto removido");
+      toast.success("Projeto removido.");
       queryClient.invalidateQueries({ queryKey: ["listaProjetos"] });
     },
-    () => toast.error("Erro ao remover o projeto")
+    () => toast.error("Erro ao remover o projeto.")
   );
 
   return (
