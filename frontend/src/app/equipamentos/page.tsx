@@ -33,6 +33,7 @@ const EquipamentosCriar = () => {
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
           >
+            <i className="bi bi-plus-circle-fill me-1"></i>
             Adicionar Equipamento
           </button>
         </div>

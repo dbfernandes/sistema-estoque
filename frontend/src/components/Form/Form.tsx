@@ -4,6 +4,8 @@ import {
   Equipamento,
   UpdateEquipamentoDto,
 } from "@/types/equipamento";
+import { joiResolver } from "@hookform/resolvers/joi";
+import equipamentoSchema from "@/schemas/equipamento";
 
 interface FormProps {
   equipamento?: Equipamento;
@@ -24,6 +26,7 @@ const Form = ({ equipamento, onSubmit }: FormProps) => {
       numSerie: equipamento?.numSerie,
       statusEquip: equipamento?.statusEquip,
     },
+    resolver: joiResolver(equipamentoSchema),
   });
 
   return (
@@ -38,10 +41,10 @@ const Form = ({ equipamento, onSubmit }: FormProps) => {
             className="form-control"
             id="nome"
             aria-describedby="nome"
-            {...register("nome", { required: true })}
+            {...register("nome")}
           />
           {errors.nome && (
-            <span className="text-danger">Esse campo é obrigatório</span>
+            <span className="text-danger">{errors.nome.message}</span>
           )}
         </div>
 
@@ -53,10 +56,10 @@ const Form = ({ equipamento, onSubmit }: FormProps) => {
             className="form-control"
             id="descricao"
             rows={2}
-            {...register("descricao", { required: true })}
+            {...register("descricao")}
           ></textarea>
           {errors.descricao && (
-            <span className="text-danger">Esse campo é obrigatório</span>
+            <span className="text-danger">{errors.descricao.message}</span>
           )}
         </div>
 
@@ -68,10 +71,10 @@ const Form = ({ equipamento, onSubmit }: FormProps) => {
             className="form-control"
             id="exampleFormControlTextarea1"
             rows={1}
-            {...register("observacoes", { required: true })}
+            {...register("observacoes")}
           ></textarea>
           {errors.observacoes && (
-            <span className="text-danger">Esse campo é obrigatório</span>
+            <span className="text-danger">{errors.observacoes.message}</span>
           )}
         </div>
 
@@ -83,10 +86,10 @@ const Form = ({ equipamento, onSubmit }: FormProps) => {
             className="form-control"
             id="origem"
             rows={1}
-            {...register("origem", { required: true })}
+            {...register("origem")}
           ></textarea>
           {errors.origem && (
-            <span className="text-danger">Esse campo é obrigatório</span>
+            <span className="text-danger">{errors.origem.message}</span>
           )}
         </div>
 
@@ -97,7 +100,7 @@ const Form = ({ equipamento, onSubmit }: FormProps) => {
 
           <select
             className="form-select"
-            {...register("statusEquip", { required: true })}
+            {...register("statusEquip")}
           >
             <option value="Laboratorio">Laboratório</option>
             <option value="Reservado">Reservado</option>
@@ -115,10 +118,10 @@ const Form = ({ equipamento, onSubmit }: FormProps) => {
             className="form-control"
             id="numSerie"
             aria-describedby="numSerie"
-            {...register("numSerie", { required: true })}
+            {...register("numSerie")}
           />
           {errors.numSerie && (
-            <span className="text-danger">Esse campo é obrigatório</span>
+            <span className="text-danger">{errors.numSerie.message}</span>
           )}
 
           <button type="submit" className="btn btn-primary mt-2 w-100">
