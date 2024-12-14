@@ -1,7 +1,6 @@
 "use client";
 import CardEquipamento from "@/components/CardEquipamento/CardEquipamento";
-import Form from "@/components/Form/Form";
-import Modal from "@/components/Modal/Modal";
+import EquipamentoForm from "@/components/EquipamentoForm/EquipamentoForm";
 import { useAdicionaEquipamento } from "@/hooks/useAdicionaEquipamento";
 import { useListaEquipamentos } from "@/hooks/useListaEquipamentos";
 import { CreateEquipamentoDto, Equipamento } from "@/types/equipamento";
@@ -45,14 +44,13 @@ const EquipamentosCriar = () => {
         </div>
       </div>
 
-      <Modal titulo="Novo Equipamento">
-        <Form
-          onSubmit={(equipamento: CreateEquipamentoDto) => {
-            console.log(equipamento);
-            criarEquipamento(equipamento);
-          }}
-        />
-      </Modal>
+      <EquipamentoForm
+        titulo="Novo Equipamento"
+        onSubmit={(equipamento: CreateEquipamentoDto) => {
+          console.log(equipamento);
+          criarEquipamento(equipamento);
+        }}
+      />
     </>
   );
 };

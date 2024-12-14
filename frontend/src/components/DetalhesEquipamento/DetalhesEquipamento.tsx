@@ -1,8 +1,7 @@
 import { useRemoveEquipamento } from "@/hooks/useRemoveEquipamento";
 import { Equipamento, UpdateEquipamentoDto } from "@/types/equipamento";
 import { useRouter } from "next/navigation";
-import Modal from "../Modal/Modal";
-import Form from "../Form/Form";
+import EquipamentoForm from "../EquipamentoForm/EquipamentoForm";
 import { useAtualizaEquipamento } from "@/hooks/useAtualizaEquipamento";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
@@ -63,15 +62,14 @@ const DetalhesEquipamento = ({ equipamento }: DetalhesEquipamentoProps) => {
         </button>
       </div>
 
-      <Modal titulo="Atualizar Equipamento">
-        <Form
-          equipamento={equipamento}
-          onSubmit={(data: UpdateEquipamentoDto) => {
-            console.log(data);
-            atualizaEquipamento(data);
-          }}
-        />
-      </Modal>
+      <EquipamentoForm
+        equipamento={equipamento}
+        titulo="Atualizar equipamento"
+        onSubmit={(data: UpdateEquipamentoDto) => {
+          console.log(data);
+          atualizaEquipamento(data);
+        }}
+      />
     </div>
   );
 };
