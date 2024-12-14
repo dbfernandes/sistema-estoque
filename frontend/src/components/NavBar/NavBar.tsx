@@ -4,6 +4,7 @@ import { AuthContext } from "@/provider/AuthProvider";
 import api from "@/services/api";
 import router from "next/router";
 import { useContext } from "react";
+import Link from "next/link";
 
 const Navbar = () => {
   const { auth, setAuth } = useContext(AuthContext);
@@ -33,28 +34,33 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">
+              <Link className="nav-link active" aria-current="page" href="/">
                 Home
-              </a>
+              </Link>
             </li>
             {!auth && (
               <>
                 <li className="nav-item">
-                  <a className="nav-link active" href="/login">
+                  <Link className="nav-link active" href="/login">
                     Login
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link active" href="/signup">
+                  <Link className="nav-link active" href="/signup">
                     Cadastro
-                  </a>
+                  </Link>
                 </li>
               </>
             )}
             <li className="nav-item">
-              <a className="nav-link active" href="/equipamentos">
+              <Link className="nav-link active" href="/equipamentos">
                 Equipamentos
-              </a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link active" href="/projetos">
+                Projetos
+              </Link>
             </li>
           </ul>
           <p className="nav-item mb-2 me-2 mb-md-0">{auth ? auth.nome : ""}</p>

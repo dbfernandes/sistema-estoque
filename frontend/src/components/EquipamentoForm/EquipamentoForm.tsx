@@ -1,36 +1,39 @@
-"use client";
+import { useForm } from "react-hook-form";
+import {
+  CreateEquipamentoDto,
+  Equipamento,
+  UpdateEquipamentoDto,
+} from "@/types/equipamento";
+import { joiResolver } from "@hookform/resolvers/joi";
+import equipamentoSchema from "@/schemas/equipamento";
+import Modal from "../Modal/Modal";
 
-import { useAdicionaEquipamento } from "@/hooks/useAdicionaEquipamento";
-import api from "@/services/api";
-import { CreateEquipamentoDto, Equipamento } from "@/types/equipamento";
-import { SubmitHandler, useForm } from "react-hook-form";
-
-interface EquipamentoFormProps {
+interface FormProps {
   equipamento?: Equipamento;
+  titulo: string;
+  onSubmit: (data: CreateEquipamentoDto | UpdateEquipamentoDto) => void;
 }
 
-const EquipamentoForm = ({ equipamento }: EquipamentoFormProps) => {
-  const { mutate } = useAdicionaEquipamento();
-
+const EquipamentoForm = ({ equipamento, titulo, onSubmit }: FormProps) => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm<CreateEquipamentoDto>();
-
-  const onSubmit: SubmitHandler<CreateEquipamentoDto> = (data) => {
-    console.log(data);
-    mutate(data);
-  };
+  } = useForm<CreateEquipamentoDto>({
+    defaultValues: {
+      nome: equipamento?.nome,
+      descricao: equipamento?.descricao,
+      observacoes: equipamento?.observacoes,
+      origem: equipamento?.origem,
+      numSerie: equipamento?.numSerie,
+      statusEquip: equipamento?.statusEquip,
+    },
+    resolver: joiResolver(equipamentoSchema),
+  });
 
   return (
-    <main>
-      <div className="container mt-3 col-3">
-        <h4 className="text-center">
-          {equipamento ? "Atualizar equipamento" : "Novo equipamento"}
-        </h4>
-
+    <>
+      <Modal titulo={titulo}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-3">
             <label htmlFor="nome" className="form-label">
@@ -38,14 +41,13 @@ const EquipamentoForm = ({ equipamento }: EquipamentoFormProps) => {
             </label>
             <input
               type="text"
-              className="form-control"
+              className="form-control mb-1"
               id="nome"
               aria-describedby="nome"
-              value={equipamento?.nome}
-              {...register("nome", { required: true })}
+              {...register("nome")}
             />
             {errors.nome && (
-              <span className="text-danger">Esse campo é obrigatório</span>
+              <span className="text-danger">{errors.nome.message}</span>
             )}
           </div>
 
@@ -54,14 +56,13 @@ const EquipamentoForm = ({ equipamento }: EquipamentoFormProps) => {
               Descrição
             </label>
             <textarea
-              className="form-control"
+              className="form-control mb-1"
               id="descricao"
               rows={2}
-              value={equipamento?.descricao}
-              {...register("descricao", { required: true })}
+              {...register("descricao")}
             ></textarea>
             {errors.descricao && (
-              <span className="text-danger">Esse campo é obrigatório</span>
+              <span className="text-danger">{errors.descricao.message}</span>
             )}
           </div>
 
@@ -70,14 +71,13 @@ const EquipamentoForm = ({ equipamento }: EquipamentoFormProps) => {
               Observações
             </label>
             <textarea
-              className="form-control"
+              className="form-control mb-1"
               id="exampleFormControlTextarea1"
-              rows={2}
-              value={equipamento?.observacoes}
-              {...register("observacoes", { required: true })}
+              rows={1}
+              {...register("observacoes")}
             ></textarea>
             {errors.observacoes && (
-              <span className="text-danger">Esse campo é obrigatório</span>
+              <span className="text-danger">{errors.observacoes.message}</span>
             )}
           </div>
 
@@ -86,14 +86,13 @@ const EquipamentoForm = ({ equipamento }: EquipamentoFormProps) => {
               Origem
             </label>
             <textarea
-              className="form-control"
+              className="form-control mb-1"
               id="origem"
-              rows={2}
-              value={equipamento?.origem}
-              {...register("origem", { required: true })}
+              rows={1}
+              {...register("origem")}
             ></textarea>
             {errors.origem && (
-              <span className="text-danger">Esse campo é obrigatório</span>
+              <span className="text-danger">{errors.origem.message}</span>
             )}
           </div>
 
@@ -102,14 +101,8 @@ const EquipamentoForm = ({ equipamento }: EquipamentoFormProps) => {
               Status
             </label>
 
-            <select
-              className="form-select"
-              aria-label="Default select example"
-              {...register("statusEquip", { required: true })}
-            >
-              <option selected value="Laboratorio">
-                Laboratorio
-              </option>
+            <select className="form-select mb-1" {...register("statusEquip")}>
+              <option value="Laboratorio">Laboratório</option>
               <option value="Reservado">Reservado</option>
               <option value="Manutencao">Manuntenção</option>
               <option value="Emprestado">Emprestado</option>
@@ -122,25 +115,22 @@ const EquipamentoForm = ({ equipamento }: EquipamentoFormProps) => {
             </label>
             <input
               type="text"
-              className="form-control"
+              className="form-control mb-1"
               id="numSerie"
               aria-describedby="numSerie"
-              value={equipamento?.numSerie}
-              {...register("numSerie", { required: true })}
+              {...register("numSerie")}
             />
             {errors.numSerie && (
-              <span className="text-danger">Esse campo é obrigatório</span>
+              <span className="text-danger">{errors.numSerie.message}</span>
             )}
-          </div>
 
-          <div className="d-grid col-12">
-            <button type="submit" className="btn btn-primary">
-              {equipamento ? "Atualizar" : "Criar"}
+            <button type="submit" className="btn btn-primary mt-2 w-100">
+              Salvar
             </button>
           </div>
         </form>
-      </div>
-    </main>
+      </Modal>
+    </>
   );
 };
 

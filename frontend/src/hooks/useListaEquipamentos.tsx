@@ -1,4 +1,4 @@
-import { listaEquipamentos } from "@/services/equipamentos";
+import { listaEquipamentos } from "@/services/equipamento";
 import { useQuery } from "@tanstack/react-query";
 
 export function useListaEquipamentos() {
