@@ -3,6 +3,7 @@ import authRouter from '../resources/auth/auth.router';
 import usuarioRouter from '../resources/usuario/usuario.router';
 import equipamentoRouter from '../resources/equipamento/equipamento.router';
 import projetoRouter from '../resources/projeto/projetos.router';
+import solicitacaoRouter from '../resources/solicitacao/solicitacao.router';
 
 const router = Router();
 
@@ -45,6 +46,10 @@ router.use(
  */
 router.use(
   projetoRouter,
+);
+
+router.use(
+  solicitacaoRouter
 );
 
 export default router;
