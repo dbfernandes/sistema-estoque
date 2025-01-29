@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import solicitacaoController from './solicitacao.controller';
+import solicitacaoController from './emprestimo.controller';
 
 const router = Router();
 

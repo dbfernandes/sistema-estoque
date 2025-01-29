@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
-import { createSolicitacao, getSolicitacaoById, listSolicitacao, removeSolicitacao, solicitacaoAlreadyExists, updateSolicitacao } from "../solicitacao/solicitacao.service"
-import { CreateSolicitacaoDto, CreateSolicitacaoEquipamentoDto, UpdateSolicitacaoDto } from "../solicitacao/solicitacao.types"
+import { createEmprestimo, getEmprestimoById, listEmprestimo, removeSolicitacao, solicitacaoAlreadyExists, updateSolicitacao } from "./emprestimo.service"
+import { CreateEmprestimoDto, CreateSolicitacaoEquipamentoDto, UpdateEmprestimoDto } from "./emprestimo.types"
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
 const isError = (error: unknown): error is Error => {
@@ -20,7 +20,7 @@ const create = async (req: Request, res: Response) => {
     if(!equipamentos || !Array.isArray(equipamentos))
         return res.status(400).send('O campo "equipamentos" é obrigatório e deve ser um array.')
 
-    const solicitacaoData: CreateSolicitacaoDto = {
+    const solicitacaoData: CreateEmprestimoDto = {
         requisitanteId: requisitanteId,
         aprovadorId: aprovadorId,
         observacoes: observacoes,
@@ -45,7 +45,7 @@ const create = async (req: Request, res: Response) => {
 
 const list = async (req: Request, res: Response) =>{
 
-    const projetos = await listSolicitacao();
+    const projetos = await listEmprestimo();
 
     if(projetos === null) res.status(StatusCodes.NOT_FOUND).send("Não existem projetos cadastrados");
     res.status(StatusCodes.ACCEPTED).json(projetos);
@@ -54,7 +54,7 @@ const list = async (req: Request, res: Response) =>{
 const getById = async (req: Request, res: Response) => {
     const { id } = req.params;
 
-    const projeto = await getSolicitacaoById(id); 
+    const projeto = await getEmprestimoById(id); 
 
     if(projeto === null) res.status(StatusCodes.NOT_FOUND).send("Esse projeto não está cadastrado na base de dados");
     res.status(StatusCodes.ACCEPTED).json(projeto);
@@ -63,7 +63,7 @@ const getById = async (req: Request, res: Response) => {
 const remove = async (req: Request, res: Response) => {
     const { id } = req.params;
 
-    const projeto = await getSolicitacaoById(id);
+    const projeto = await getEmprestimoById(id);
 
     if(projeto === null) res.status(StatusCodes.NOT_FOUND).send("Esse projeto não está cadastrado na base de dados");
     await removeSolicitacao(id);
@@ -72,7 +72,7 @@ const remove = async (req: Request, res: Response) => {
 
 const update = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const solicitacao: UpdateSolicitacaoDto = req.body;
+  const solicitacao: UpdateEmprestimoDto = req.body;
   try {
     if (await solicitacaoAlreadyExists(id)) {
       res.status(StatusCodes.CONFLICT).json(ReasonPhrases.CONFLICT);

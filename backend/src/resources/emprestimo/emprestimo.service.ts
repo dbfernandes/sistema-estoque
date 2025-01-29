@@ -1,11 +1,11 @@
 import { PrismaClient, Solicitacao, SolicitacaoEquipamento } from "@prisma/client";
 
-import { CreateSolicitacaoDto, CreateSolicitacaoEquipamentoDto, UpdateSolicitacaoDto } from "./solicitacao.types";
+import { CreateEmprestimoDto, CreateSolicitacaoEquipamentoDto, UpdateEmprestimoDto } from "./emprestimo.types";
 
 const prisma = new PrismaClient();
 
-export const createSolicitacao = async (
-    inputData: CreateSolicitacaoDto
+export const createEmprestimo = async (
+    inputData: CreateEmprestimoDto
 ): Promise<Solicitacao> => {
     const solicitacao = await prisma.solicitacao.create({
         data: inputData
@@ -23,13 +23,13 @@ export const createSolicitacaoEquipamento = async (
     return solicitacaoEquipamento;
 };*/
 
-export const getSolicitacaoById = async (
+export const getEmprestimoById = async (
     id: string
 ): Promise<Solicitacao | null> => {
     return await prisma.solicitacao.findUnique({ where: { id } });
 };
 
-export const listSolicitacao = async(): Promise<Solicitacao[]> => {
+export const listEmprestimo = async(): Promise<Solicitacao[]> => {
     return await prisma.solicitacao.findMany();
 }
 
@@ -47,7 +47,7 @@ export const solicitacaoAlreadyExists = async (
 
 export const updateSolicitacao = async (
     id: string,
-    solicitacao: UpdateSolicitacaoDto,
+    solicitacao: UpdateEmprestimoDto,
   ): Promise<Solicitacao> => {
     return await prisma.solicitacao.update({ where: { id }, data: solicitacao });
   };
