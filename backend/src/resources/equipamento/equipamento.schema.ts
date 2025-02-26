@@ -16,6 +16,8 @@ const schemaEquipamento = Joi.object({
     .required(),
   descricao: Joi.string(),
   observacoes: Joi.string().allow(''),
+  tombamento: Joi.string().allow(''),
+  tipoEquipamento: Joi.string().allow(''),
 });
 
 export default schemaEquipamento;

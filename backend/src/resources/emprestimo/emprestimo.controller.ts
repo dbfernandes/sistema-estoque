@@ -2,6 +2,7 @@ import { Request, Response } from "express"
 import { createEmprestimo, getEmprestimoById, listEmprestimo, removeSolicitacao, solicitacaoAlreadyExists, updateSolicitacao } from "./emprestimo.service"
 import { CreateEmprestimoDto, CreateSolicitacaoEquipamentoDto, UpdateEmprestimoDto } from "./emprestimo.types"
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
+import { StatusSolicitacao } from "@prisma/client";
 
 const isError = (error: unknown): error is Error => {
   return (error as Error).message !== undefined;
@@ -13,34 +14,23 @@ const create = async (req: Request, res: Response) => {
         requisitanteId,
         aprovadorId,
         observacoes,
-        statusSolic,
         equipamentos
     } = req.body
 
     if(!equipamentos || !Array.isArray(equipamentos))
         return res.status(400).send('O campo "equipamentos" é obrigatório e deve ser um array.')
 
-    const solicitacaoData: CreateEmprestimoDto = {
+    const emprestimoData: CreateEmprestimoDto = {
         requisitanteId: requisitanteId,
         aprovadorId: aprovadorId,
         observacoes: observacoes,
-        statusSolic: statusSolic,
+        statusSolic: StatusSolicitacao.Emprestado,
     }
 
-    //const solicitacao = await createSolicitacao(solicitacaoData)
+    const emprestimo = await createEmprestimo(emprestimoData)
 
     console.log(equipamentos.length + '\n' + JSON.stringify(equipamentos))
-
-    // Cada equipamento adicionado deve ser salvo em uma entidade nova da tabela SolicitacaoEquipamento???
-    // Isso pode ser feito com um loop ou um map, dependendo da quantidade de equipamentos a serem adicionados.
-
-    /*const solicitacaoEquipamentoData: CreateSolicitacaoEquipamentoDto = {
-        solicitacaoId: solicitacao.id,
-        equipamentoId: equipamentos.id,
-        projetoId: equipamento.projetoId,
-    }
-    const solicitacaoEquipamento = await createSolicitacaoEquipamento(solicitacaoEquipamentoData)
-    */
+  
 }
 
 const list = async (req: Request, res: Response) =>{

@@ -9,10 +9,11 @@ model Usuario {
   senha                  String         @db.Char(60)
   tipoUsuario            TipoUsuario    @relation(fields: [tipoUsuarioId], references: [id])
   tipoUsuarioId          String         @db.Char(40)
-  solicitacoesRequisitante Solicitacao[] @relation("Requisitante")
-  solicitacoesAprovador  Solicitacao[]  @relation("Aprovador")
+  solicitacoesRequisitante Emprestimo[] @relation("Requisitante")
+  solicitacoesAprovador  Emprestimo[]  @relation("Aprovador")
   createdAt              DateTime       @default(now()) @map("created_at")
   updatedAt              DateTime       @updatedAt @map("updated_at")
+  projetos               Projeto[]
 
   @@map("usuarios")
 }
@@ -38,6 +39,8 @@ model Equipamento {
   createdAt       DateTime          @default(now()) @map("created_at")
   updatedAt       DateTime          @updatedAt @map("updated_at")
   solicitacoes    SolicitacaoEquipamento[]
+
+  @@map("equipamento")
 }
 
 model Emprestimo {
@@ -57,7 +60,7 @@ model Emprestimo {
   @@map("emprestimo")
 }
 
-model SolicitacaoEquipamento {
+model SolicitacaoEmprestimo {
   emprestimoId  String
   equipamentoId String
   projetoId     String
@@ -65,7 +68,8 @@ model SolicitacaoEquipamento {
   emprestimo    Emprestimo  @relation(fields: [emprestimoId], references: [id])
   equipamento   Equipamento @relation(fields: [equipamentoId], references: [id])
 
-  @@id([solicitacaoId, equipamentoId])
+  @@id([emprestimoId, equipamentoId])
+  @@map("solicitacao_emprestimo")
 }
 
 model Projeto {
@@ -78,7 +82,7 @@ model Projeto {
   createdAt        DateTime                  @default(now()) @map("created_at")
   updatedAt        DateTime                  @updatedAt @map("updated_at")
 
-  @@map("projetos")
+  @@map("projeto")
 }
 
 

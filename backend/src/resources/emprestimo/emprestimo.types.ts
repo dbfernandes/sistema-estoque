@@ -1,16 +1,16 @@
-import { Solicitacao, SolicitacaoEquipamento } from "@prisma/client";
+import { Emprestimo, SolicitacaoEquipamento } from "@prisma/client";
 
 export type CreateEmprestimoDto = Pick<
-    Solicitacao,
+    Emprestimo,
     'requisitanteId' | 'aprovadorId' | 'observacoes' | 'statusSolic'
 >;
 
 export type CreateSolicitacaoEquipamentoDto = Pick<
     SolicitacaoEquipamento,
-    'solicitacaoId' | 'equipamentoId' | 'projetoId'
+    'equipamentoId' | 'equipamentoId' | 'projetoId'
 >
 
 export type UpdateEmprestimoDto = Pick<
-    Solicitacao,
+    Emprestimo,
     'aprovadorId' | 'observacoes' | 'statusSolic'
 >

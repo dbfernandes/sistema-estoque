@@ -3,9 +3,9 @@ import solicitacaoController from './emprestimo.controller';
 
 const router = Router();
 
-router.post('/solicitacao/', solicitacaoController.create)
-router.get('/solicitacao/', solicitacaoController.list)
-router.get('/solicitacao/:id', solicitacaoController.getById);
-router.delete('/solicitacao/:id', solicitacaoController.remove);
-router.put('/solicitacao/:id', solicitacaoController.update);
+router.post('/emprestimo/', solicitacaoController.create)
+router.get('/emprestimo/', solicitacaoController.list)
+router.get('/emprestimo/:id', solicitacaoController.getById);
+router.delete('/emprestimo/:id', solicitacaoController.remove);
+router.put('/emprestimo/:id', solicitacaoController.update);
 export default router;
