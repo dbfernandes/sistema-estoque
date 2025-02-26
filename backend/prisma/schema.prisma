@@ -9,10 +9,11 @@ model Usuario {
   senha                  String         @db.Char(60)
   tipoUsuario            TipoUsuario    @relation(fields: [tipoUsuarioId], references: [id])
   tipoUsuarioId          String         @db.Char(40)
-  solicitacoesRequisitante Solicitacao[] @relation("Requisitante")
-  solicitacoesAprovador  Solicitacao[]  @relation("Aprovador")
+  solicitacoesRequisitante Emprestimo[] @relation("Requisitante")
+  solicitacoesAprovador  Emprestimo[]  @relation("Aprovador")
   createdAt              DateTime       @default(now()) @map("created_at")
   updatedAt              DateTime       @updatedAt @map("updated_at")
+  projetos               Projeto[]
 
   @@map("usuarios")
 }
@@ -31,14 +32,18 @@ model Equipamento {
   descricao       String            @db.VarChar(5000)
   observacoes     String            @db.VarChar(5000)
   origem          String
-  numSerie        String
+  numSerie        String            @db.VarChar(100)
+  tombamento      String
+  tipoEquipamento String
   statusEquip     StatusEquipamento @default(Laboratorio) @map("status_equipamento")
   createdAt       DateTime          @default(now()) @map("created_at")
   updatedAt       DateTime          @updatedAt @map("updated_at")
   solicitacoes    SolicitacaoEquipamento[]
+
+  @@map("equipamento")
 }
 
-model Solicitacao {
+model Emprestimo {
   id               String             @id @default(uuid()) @db.Char(40)
   requisitanteId   String
   aprovadorId      String
@@ -52,29 +57,34 @@ model Solicitacao {
   createdAt        DateTime           @default(now()) @map("created_at")
   updatedAt        DateTime           @updatedAt @map("updated_at")
 
-  @@map("solicitacoes")
+  @@map("emprestimo")
 }
 
-model SolicitacaoEquipamento {
-  solicitacaoId String
+model SolicitacaoEmprestimo {
+  emprestimoId  String
   equipamentoId String
   projetoId     String
   projeto       Projeto     @relation(fields: [projetoId], references: [id])
-  solicitacao   Solicitacao @relation(fields: [solicitacaoId], references: [id])
+  emprestimo    Emprestimo  @relation(fields: [emprestimoId], references: [id])
   equipamento   Equipamento @relation(fields: [equipamentoId], references: [id])
 
-  @@id([solicitacaoId, equipamentoId])
+  @@id([emprestimoId, equipamentoId])
+  @@map("solicitacao_emprestimo")
 }
 
-model Projeto{
-  id                            String        @id @default(uuid())
-  nome                          String
-  solicitacoes                  SolicitacaoEquipamento[]
-  descricao                     String        @db.VarChar(200)
-  responsavel                   String
-  createdAt                     DateTime      @default(now()) @map("created_at")
-  updatedAt                     DateTime      @updatedAt @map("updated_at")
+model Projeto {
+  id               String                    @id @default(uuid())
+  nome             String
+  descricao        String                    @db.VarChar(200)
+  responsavelId    String                    @db.Char(40)
+  responsavel      Usuario                   @relation(fields: [responsavelId], references: [id])
+  solicitacoes     SolicitacaoEquipamento[]
+  createdAt        DateTime                  @default(now()) @map("created_at")
+  updatedAt        DateTime                  @updatedAt @map("updated_at")
+
+  @@map("projeto")
 }
+
 
 enum StatusEquipamento {
   Laboratorio

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/Navbar/Navbar";
+import NavBar from "@/components/NavBar/NavBar";
 import BootstrapClient from "@/components/BootstrapClient";
 import AuthProvider from "@/provider/AuthProvider";
 import { ReactQueryClientProvider } from "@/components/ReactQueryClient/ReactQueryClient";
@@ -24,7 +24,7 @@ export default function RootLayout({
       <body>
         <AuthProvider>
           <ReactQueryClientProvider>
-            <Navbar />
+            <NavBar />
             {children}
             <BootstrapClient />
             <ToastContainer />
