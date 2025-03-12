@@ -50,3 +50,5 @@ app.use('/img', express.static(`${__dirname}/../public/img`));
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
+
+export default app;
